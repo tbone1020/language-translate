@@ -1,0 +1,29 @@
+header {
+  background: #1CA6F2;
+  color: white;
+  padding: 15px 0;
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  width: 90%;
+}
+
+.header-logo {
+  display: flex;
+  align-items: flex-end;
+  margin-right: auto;
+}
+.logo-sub-text {
+  font-size: 18px;
+}
+.help-icon {
+  cursor: pointer;
+}
+
+.help-icon svg {
+  font-size: 20px;
+}
