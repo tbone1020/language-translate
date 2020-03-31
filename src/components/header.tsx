@@ -12,8 +12,7 @@ interface IProps {
 export default class Header extends React.Component<IProps, {}> {
 
   showHelpModel(): void {
-    const { isModelShowing, updateMainState } = this.props;
-    console.log(this.props);
+    // const { isModelShowing, updateMainState } = this.props;
   }
 
   render() {

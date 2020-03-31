@@ -1,0 +1,486 @@
+[
+    [
+        {
+            "text": "country U.S. Products"
+        },
+        {
+            "text": "country Canadian Products"
+        },
+        {
+            "text": "0 2"
+        },
+        {
+            "text": "lang English"
+        },
+        {
+            "text": "lang Canadian French"
+        },
+        {
+            "text": "lang Canada - English"
+        },
+        {
+            "text": "searchField Enter city / zip code"
+        },
+        {
+            "text": "subButton Find"
+        },
+        {
+            "text": "cpButton Refine Search"
+        },
+        {
+            "text": "geoButton Search nearby"
+        },
+        {
+            "text": "backButton Back"
+        },
+        {
+            "text": "p2backButton Back to products"
+        },
+        {
+            "text": "p3backButton Back to locations"
+        },
+        {
+            "text": "p4backButton Back to locations"
+        },
+        {
+            "text": "p5backButton Back to locations"
+        },
+        {
+            "text": "selectButton Select"
+        },
+        {
+            "text": "findText Make a Selection"
+        },
+        {
+            "text": "countSingle Deal Found"
+        },
+        {
+            "text": "countPlural Deals Found"
+        },
+        {
+            "text": "numSingle Deal"
+        },
+        {
+            "text": "numPlural Deals"
+        },
+        {
+            "text": "prevDeal Previous"
+        },
+        {
+            "text": "nextDeal Next"
+        },
+        {
+            "text": "dealBrowse View Deals"
+        },
+        {
+            "text": "dealTextStart View"
+        },
+        {
+            "text": "dealTextEnd "
+        },
+        {
+            "text": "selSingle Selected Product"
+        },
+        {
+            "text": "selPlural Selected Products"
+        },
+        {
+            "text": "selAll All"
+        },
+        {
+            "text": "selAllButton Select all products shown"
+        },
+        {
+            "text": "clearAllButton Clear All"
+        },
+        {
+            "text": "cartButton Add to Cart"
+        },
+        {
+            "text": "emptyCart Your Shopping Cart is Empty."
+        },
+        {
+            "text": "resetButton Reset Products"
+        },
+        {
+            "text": "prodMenu Select Products"
+        },
+        {
+            "text": "catMenu Select a Category"
+        },
+        {
+            "text": "showMore Show More"
+        },
+        {
+            "text": "badgeSingle Product"
+        },
+        {
+            "text": "badgePlural Products"
+        },
+        {
+            "text": "filterButton "
+        },
+        {
+            "text": "filterField Search favourite product"
+        },
+        {
+            "text": "labelCrumb Showing products for:"
+        },
+        {
+            "text": "prevTen "
+        },
+        {
+            "text": "nextTen View more"
+        },
+        {
+            "text": "noProdSel No Products Selected"
+        },
+        {
+            "text": "emailButton Send"
+        },
+        {
+            "text": "emailField Email Address"
+        },
+        {
+            "text": "directButton Directions"
+        },
+        {
+            "text": "directGet Get Directions"
+        },
+        {
+            "text": "showMore Show More"
+        },
+        {
+            "text": "showLess Show Less"
+        },
+        {
+            "text": "prodFoundSingle Product found"
+        },
+        {
+            "text": "prodFoundPlural Products found"
+        },
+        {
+            "text": "printButton Print"
+        },
+        {
+            "text": "showDetails Find products"
+        },
+        {
+            "text": "productsTab Products"
+        },
+        {
+            "text": "directionsTab Directions"
+        },
+        {
+            "text": "emailTab Email"
+        },
+        {
+            "text": "externalMap Directions"
+        },
+        {
+            "text": "avSingle Product Available Online"
+        },
+        {
+            "text": "avPlural Buy online"
+        },
+        {
+            "text": "avAlt More Products Online"
+        },
+        {
+            "text": "retailerTab Retailers"
+        },
+        {
+            "text": "productsTab Products"
+        },
+        {
+            "text": "retCountSingle Retailer found"
+        },
+        {
+            "text": "retCountPlural Retailers found"
+        },
+        {
+            "text": "prodCountSingle Product found"
+        },
+        {
+            "text": "prodCountPlural Products found"
+        },
+        {
+            "text": "buyButton Buy online"
+        },
+        {
+            "text": "inStock In Stock"
+        },
+        {
+            "text": "outStock Out of Stock"
+        },
+        {
+            "text": "detailText Details"
+        },
+        {
+            "text": "goButton Contact Us"
+        },
+        {
+            "text": "headerText No Stores Found"
+        },
+        {
+            "text": "bodyText Oh no! Try increasing the search radius or complete the form to request products near you."
+        },
+        {
+            "text": "nameField Your Name"
+        },
+        {
+            "text": "emailField Email Address"
+        },
+        {
+            "text": "phoneField Phone Number"
+        },
+        {
+            "text": "storeField Where do you shop?"
+        },
+        {
+            "text": "chainField Search for Stores"
+        }
+    ],
+    [
+        {
+            "text": "commentField Comments"
+        },
+        {
+            "text": "cityField City"
+        },
+        {
+            "text": "stateField Province"
+        },
+        {
+            "text": "zipField Postal Code"
+        },
+        {
+            "text": "countryField Select a Country"
+        },
+        {
+            "text": "subButton Submit"
+        },
+        {
+            "text": "goButton click here"
+        },
+        {
+            "text": "fnameField First Name"
+        },
+        {
+            "text": "lnameField Last Name"
+        },
+        {
+            "text": "jobField Job Title"
+        },
+        {
+            "text": "emailField Email Address"
+        },
+        {
+            "text": "phoneField Phone Number"
+        },
+        {
+            "text": "snameField Store Name"
+        },
+        {
+            "text": "addressField Street Address"
+        },
+        {
+            "text": "cityField City"
+        },
+        {
+            "text": "stateField Province"
+        },
+        {
+            "text": "zipField Postal Code"
+        },
+        {
+            "text": "countryField Select a Country"
+        },
+        {
+            "text": "sphoneField Phone Number"
+        },
+        {
+            "text": "subButton Submit"
+        },
+        {
+            "text": "sessStart Start New Session"
+        },
+        {
+            "text": "sessEnd End Session"
+        },
+        {
+            "text": "respEmailField Email Address"
+        },
+        {
+            "text": "respEmailButton Send"
+        },
+        {
+            "text": "respNameField Customer Name"
+        },
+        {
+            "text": "respBodyField Thank you for your interest in our products. Your results are included below."
+        },
+        {
+            "text": "respControlField Modify"
+        },
+        {
+            "text": "respIncProd Include Products"
+        },
+        {
+            "text": "copyText Copy"
+        },
+        {
+            "text": "copiedText Copied"
+        },
+        {
+            "text": "invalidLocation Please Enter a Valid Location."
+        },
+        {
+            "text": "noLocation We are sorry, but we could not find your location."
+        },
+        {
+            "text": "prodSwitchTitle Please confirm your search."
+        },
+        {
+            "text": "prodSwitchText "
+        },
+        {
+            "text": "prodSwitchContButton Continue with"
+        },
+        {
+            "text": "prodSwitchChangeButton Continue with"
+        },
+        {
+            "text": "prodSelect Please select at least one product."
+        },
+        {
+            "text": "emailSuccess Email sent successfully."
+        },
+        {
+            "text": "emailAddFail You appear to have entered an invalid email address. Please try again."
+        },
+        {
+            "text": "geoFail Geolocation service failed."
+        },
+        {
+            "text": "geoUnavailable Your browser does not support geolocation."
+        },
+        {
+            "text": "directOrigin Please choose a directions origin."
+        },
+        {
+            "text": "directSent Your directions have been sent!"
+        },
+        {
+            "text": "reqFields Please fill out required fields."
+        },
+        {
+            "text": "requestReceipt We have received your request."
+        },
+        {
+            "text": "genSlider Select One"
+        },
+        {
+            "text": "0 3"
+        },
+        {
+            "text": "1 2"
+        },
+        {
+            "text": "autotext FIND Some Kick Ass Coffee!"
+        },
+        {
+            "text": "autotext Looking for a specific product? Make your selection below."
+        },
+        {
+            "text": "autotext Product categories"
+        },
+        {
+            "text": "autotext Filter products:"
+        },
+        {
+            "text": "autotext Send store details & directions"
+        },
+        {
+            "text": "autotext Total results"
+        },
+        {
+            "text": "autotext Displaying"
+        },
+        {
+            "text": "autotext Retailers,"
+        },
+        {
+            "text": "autotext to add your store."
+        },
+        {
+            "text": "autotext Products subject to availability."
+        },
+        {
+            "text": "autotext Dang!"
+        },
+        {
+            "text": "autotext The selected products aren't yet available near this location. But, good news: you can always buy online."
+        },
+        {
+            "text": "autotext Contact Info"
+        },
+        {
+            "text": "autotext Store Info"
+        },
+        {
+            "text": "autotext Select Products"
+        },
+        {
+            "text": "autotext Location"
+        },
+        {
+            "text": "autotext Route Overview"
+        },
+        {
+            "text": "autotext Retail Request Form"
+        },
+        {
+            "text": "autotext Have your location listed by completing the form below."
+        },
+        {
+            "text": "autotext View more"
+        },
+        {
+            "text": "autotext Your Email Request"
+        },
+        {
+            "text": "autotext Thank you for your interest in our products."
+        },
+        {
+            "text": "autotext Here are the store details and directions you requested:"
+        },
+        {
+            "text": "autotext Store details"
+        },
+        {
+            "text": "autotext Directions to this location"
+        },
+        {
+            "text": "autotext Your print request"
+        },
+        {
+            "text": "autotext Here is the store list you requested:"
+        },
+        {
+            "text": "autotext Or broaden the search and try again!"
+        },
+        {
+            "text": "autotext Buy online"
+        },
+        {
+            "text": "autotext Products selected"
+        },
+        {
+            "text": "autotext Categories"
+        },
+        {
+            "text": "autotext Send store details"
+        }
+    ]
+]

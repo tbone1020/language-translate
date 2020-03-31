@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './translation.css';
 
 interface IProps {
@@ -6,9 +6,6 @@ interface IProps {
 }
 
 export default class TranslationOutput extends React.Component<IProps, {}> {
-  constructor(props) {
-    super(props);
-  }
   
   render() {
     return (<div className="textarea-wrapper">

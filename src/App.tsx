@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './components/header';
 import TranslationInput from './components/translation-input';
 import TranslationOutput from './components/translation-result';
 import LoadingIcon from './components/loading';
+import mockTranslation from './data/mockTranslation.json';
 import './App.css';
 
 interface IState {
@@ -36,41 +37,42 @@ export default class App extends React.Component<{}, IState> {
   }
 
   setToLoadingAndTranslate(): void {
-    let inputKeys = Object.keys(this.state.userTypedInput);
-    const translateReadyList: Object[] = [];
+    let listWithoutCountKeys = Object.keys(this.state.userTypedInput).filter(key => key.indexOf('Count') === -1);
+    let listSeparatedInHalf = this.divideListInHalf(listWithoutCountKeys);
+    let firstHalf = this.convertListToTranslateReadyObject(listSeparatedInHalf[0]);
+    let secondHalf = this.convertListToTranslateReadyObject(listSeparatedInHalf[1]);
+    this.translate(firstHalf, secondHalf);
+  }
+
+  convertListToTranslateReadyObject(inputKeys: string[]): object[] {
+    const finalTranslateReadyList: object[] = [];
     for (let i = 0; i < inputKeys.length; i++) {
-      let keyType = this.getKeyType(this.state.userTypedInput[inputKeys[i]]);
-      let translateList;
-      if (keyType === "array") {
-        translateList = this.grabValuesFromArrayInputAndConvertToTranslationObject(inputKeys[i], this.state.userTypedInput[inputKeys[i]]);
-      } else {
-        translateList = this.grabValuesFromObjectInputAndConvertToTranslationObject(this.state.userTypedInput[inputKeys[i]]);
-      }
-      translateReadyList.push.apply(translateReadyList, translateList);
+      let result = (Array.isArray(this.state.userTypedInput[inputKeys[i]]))
+        ? this.grabArrayValuesAndConvertToTranslateObject(inputKeys[i], this.state.userTypedInput[inputKeys[i]])
+        : this.grabObjectValuesAndConvertToTranslateObject(this.state.userTypedInput[inputKeys[i]])
+        
+      finalTranslateReadyList.push.apply(finalTranslateReadyList, result);
     }
-    let separatedTranslateList = this.splitListInHalf(translateReadyList);
-    this.setState({
-      translationList: JSON.stringify(separatedTranslateList)
-    })
+    return finalTranslateReadyList;
   }
 
-  getKeyType(key: Object): string {
-    return (Array.isArray(key) === true ? "array" : "object");
-  };
-
-  grabValuesFromArrayInputAndConvertToTranslationObject(key: string, objectList: object[]): object[] {
+  grabArrayValuesAndConvertToTranslateObject(key: string, objectList: object[]): object[] {
     let targetObjectKey = (key === "autotext") ? "val" : "name";
-    return objectList.map(objectIndex => ({ "text": `${key} ${objectIndex[targetObjectKey]}`}))
+    return objectList.map(objectIndex => ({ "text": objectIndex[targetObjectKey]}))
   }
 
-  grabValuesFromObjectInputAndConvertToTranslationObject(translationSection: object): object[] {
-    let objectKeys = Object.keys(translationSection);
-    return objectKeys.map(key => ({"text": `${key} ${translationSection[key]}`}));
+  grabObjectValuesAndConvertToTranslateObject(translationSection: object): object[] {
+    return Object.keys(translationSection).map(key => ({"text": translationSection[key]}));
   }
 
-  splitListInHalf(list: object[]): object[] {
+  divideListInHalf(list: string[]): string[][] {
     let halfwayPoint = Math.floor(list.length / 2);
     return [list.slice(0, halfwayPoint), list.slice(halfwayPoint, list.length)];
+  }
+
+  translate(firstTranslateList: object[], secondTranslateList: object[]): void {
+    console.log(firstTranslateList);
+    console.log(secondTranslateList);
   }
 
   render() {
@@ -83,7 +85,7 @@ export default class App extends React.Component<{}, IState> {
         <TranslationInput updateMainState={this.updateMainState}/>
         <LoadingIcon isLoading={isLoading} />
         <TranslationOutput translationList={translationList} />
-        <button onClick={this.setToLoadingAndTranslate} disabled={!isValidJSON} className="translate-button">{isValidJSON === true ? "Translate" : "JSON is not Valid"}</button>
+        <button onClick={this.setToLoadingAndTranslate} disabled={!isValidJSON} className="translate-button">{isValidJSON === true ? "Translate" : "Not Valid JSON"}</button>
       </section>
     </main>);
   }
