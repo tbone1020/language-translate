@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/header';
 import TranslationInput from './components/translation-input';
-import TranslationOutput from './components/translation-result';
+import TranslationOutput from './components/translation-output';
 import LoadingIcon from './components/loading';
 import mockTranslation from './data/mockTranslation.json';
 import './App.css';
@@ -13,7 +13,7 @@ interface IState {
   isModelShowing: boolean;
   isLoading: boolean;
   errorMessage: string;
-  to: string
+  toLanguage: string
 }
 
 export default class App extends React.Component<{}, IState> {
@@ -26,32 +26,35 @@ export default class App extends React.Component<{}, IState> {
       isModelShowing: false,
       isLoading: false,
       errorMessage: "",
-      to: 'fr'
+      toLanguage: 'fr'
     }
     this.updateMainState = this.updateMainState.bind(this);
-    this.setToLoadingAndTranslate = this.setToLoadingAndTranslate.bind(this);
+    this.translateUsersInput = this.translateUsersInput.bind(this);
   }
 
   updateMainState(newState: object): void {
     this.setState(newState);
   }
 
-  setToLoadingAndTranslate(): void {
+  translateUsersInput(): void {
     let listWithoutCountKeys = Object.keys(this.state.userTypedInput).filter(key => key.indexOf('Count') === -1);
-    let listSeparatedInHalf = this.divideListInHalf(listWithoutCountKeys);
-    let firstHalf = this.convertListToTranslateReadyObject(listSeparatedInHalf[0]);
-    let secondHalf = this.convertListToTranslateReadyObject(listSeparatedInHalf[1]);
-    this.translate(firstHalf, secondHalf);
+    let listSeparatedInHalf = this.splitListInHalf(listWithoutCountKeys);
+    this.translate(this.convertToTranslateReadyObject(listSeparatedInHalf[0]), this.convertToTranslateReadyObject(listSeparatedInHalf[1]));
   }
 
-  convertListToTranslateReadyObject(inputKeys: string[]): object[] {
+  splitListInHalf(list: string[]): string[][] {
+    let halfwayPoint = Math.ceil(list.length / 2);
+    return [list.slice(0, halfwayPoint), list.slice(halfwayPoint, list.length)];
+  }
+  
+  convertToTranslateReadyObject(inputKeys: string[]): object[] {
     const finalTranslateReadyList: object[] = [];
     for (let i = 0; i < inputKeys.length; i++) {
-      let result = (Array.isArray(this.state.userTypedInput[inputKeys[i]]))
+      let translateReadyList = (Array.isArray(this.state.userTypedInput[inputKeys[i]]))
         ? this.grabArrayValuesAndConvertToTranslateObject(inputKeys[i], this.state.userTypedInput[inputKeys[i]])
-        : this.grabObjectValuesAndConvertToTranslateObject(this.state.userTypedInput[inputKeys[i]])
+        : this.convertObjectValuesToTranslateObject(this.state.userTypedInput[inputKeys[i]])
         
-      finalTranslateReadyList.push.apply(finalTranslateReadyList, result);
+      finalTranslateReadyList.push.apply(finalTranslateReadyList, translateReadyList);
     }
     return finalTranslateReadyList;
   }
@@ -61,19 +64,44 @@ export default class App extends React.Component<{}, IState> {
     return objectList.map(objectIndex => ({ "text": objectIndex[targetObjectKey]}))
   }
 
-  grabObjectValuesAndConvertToTranslateObject(translationSection: object): object[] {
+  convertObjectValuesToTranslateObject(translationSection: object): object[] {
     return Object.keys(translationSection).map(key => ({"text": translationSection[key]}));
   }
 
-  divideListInHalf(list: string[]): string[][] {
-    let halfwayPoint = Math.floor(list.length / 2);
-    return [list.slice(0, halfwayPoint), list.slice(halfwayPoint, list.length)];
+  translate(firstTranslateList: object[], secondTranslateList: object[]): void {
+    // Translate the text
+    const combinedtranslations: object[] = [{}];
+    // Fetch the translations...
+
+    // Combine  The arrays back together for mapping
+    this.mapTranslationsBackToUserInput(mockTranslation);
   }
 
-  translate(firstTranslateList: object[], secondTranslateList: object[]): void {
-    console.log(firstTranslateList);
-    console.log(secondTranslateList);
+  mapTranslationsBackToUserInput(translationList: object[]): void {
+    const copyOfUserInput = Object.assign({}, this.state.userTypedInput);
+    for (let key in copyOfUserInput) {
+      if (copyOfUserInput[key] instanceof Object) {
+        let translationsForThisObjectKey = translationList.splice(0, Object.keys(copyOfUserInput[key]).length);
+        if (Array.isArray(copyOfUserInput[key])) {
+          let targetKey = (key === "autotext") ? "val" : "name";
+          for (let i = 0; i < copyOfUserInput[key].length; i++) {
+            let translationObject: any = translationsForThisObjectKey.shift();
+            copyOfUserInput[key][i][targetKey] = translationObject.text;
+          }
+        } else {
+          for (let subKey in copyOfUserInput[key]) {
+            let translationObject: any = translationsForThisObjectKey.shift();
+            copyOfUserInput[key][subKey] = translationObject.text;
+          }
+        }
+      }
+    }
+    this.setState({
+      translationList: JSON.stringify(copyOfUserInput),
+      isLoading: false
+    });
   }
+
 
   render() {
     const { isModelShowing, errorMessage, isValidJSON, isLoading, translationList } = this.state;
@@ -85,7 +113,9 @@ export default class App extends React.Component<{}, IState> {
         <TranslationInput updateMainState={this.updateMainState}/>
         <LoadingIcon isLoading={isLoading} />
         <TranslationOutput translationList={translationList} />
-        <button onClick={this.setToLoadingAndTranslate} disabled={!isValidJSON} className="translate-button">{isValidJSON === true ? "Translate" : "Not Valid JSON"}</button>
+        <button onClick={this.translateUsersInput} disabled={!isValidJSON} className="translate-button">
+          {isValidJSON === true ? "Translate" : "Not Valid JSON"}
+        </button>
       </section>
     </main>);
   }
