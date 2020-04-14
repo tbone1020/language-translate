@@ -5,7 +5,6 @@ import TranslationOutput from './components/translation-output';
 import LoadingIcon from './components/loading';
 import mockTranslation from './data/mockTranslation.json';
 import './App.css';
-import { throws } from 'assert';
 
 interface IState {
   translationList: string;
@@ -63,7 +62,7 @@ export default class App extends React.Component<{}, IState> {
   convertToTranslatableObject(inputKeys: string[]): object[] {
     const finalTranslateReadyList: object[] = [];
     for (let i = 0; i < inputKeys.length; i++) {
-      this.generateTranslateReadyObject(this.state.userTypedInput[inputKeys[i]]);
+      // this.generateTranslateReadyObject(this.state.userTypedInput[inputKeys[i]]);
       let translateReadyList = (Array.isArray(this.state.userTypedInput[inputKeys[i]]))
         ? this.getArrayValuesAndConvertToTranslateObject(inputKeys[i], this.state.userTypedInput[inputKeys[i]])
         : this.convertObjectValuesToTranslateObject(this.state.userTypedInput[inputKeys[i]])
@@ -74,7 +73,6 @@ export default class App extends React.Component<{}, IState> {
   }
 
   generateTranslateReadyObject(listOfText: string[]): void {
-    console.log(listOfText);
     // listOfText.map(key => ({"text": translationSection[key]}));
   
   }
@@ -97,36 +95,39 @@ export default class App extends React.Component<{}, IState> {
     const combinedtranslations: object[] = [{}];
     // Fetch the translations...
     // Combine The arrays back together for mapping
-    this.formatTranslationsThenUI(mockTranslation);
+    this.reformatTranslationsThenDisplay(mockTranslation);
   }
 
-  formatTranslationsThenUI(translationList: object[]): void {
-    const translations = this.addTranslationsToUserInputCopy(translationList);
+  reformatTranslationsThenDisplay(listOfTranslations: object[]): void {
+    console.log(listOfTranslations);
+    const translations = this.addTranslationsToCopyOfUserInput(listOfTranslations);
     this.setState({
       translationList: JSON.stringify(translations),
       isLoading: false
     });
   }
 
-  addTranslationsToUserInputCopy(translationList: object[]): object {
+  addTranslationsToCopyOfUserInput(translationList: object[]): object {
     const copyOfUserInput = {...this.state.userTypedInput};
     for (let key in copyOfUserInput) {
       if (copyOfUserInput[key] instanceof Object) {
-        this.addtranslationsToUserInputCopy({key, copyOfUserInput, translationList});
+        this.combineTranslationsWithCopy({key, copyOfUserInput, translationList});
       }
     }
     return copyOfUserInput;
   }
 
-  addtranslationsToUserInputCopy({key, copyOfUserInput, translationList}): void {
+  combineTranslationsWithCopy({key, copyOfUserInput, translationList}): void {
     let translationsForThisObjectKey = translationList.splice(0, Object.keys(copyOfUserInput[key]).length);
     for (let arrKey in copyOfUserInput[key]) {
-      let translationObject: any = translationsForThisObjectKey.shift();
+      let listOfTranslations: any = translationsForThisObjectKey.shift();
       if (Array.isArray(copyOfUserInput[key])) {
+        console.log("Array -------------------");
         let targetKey = this.whichObjectKeyShouldBeUsed(key);
-        copyOfUserInput[key][arrKey][targetKey] = translationObject.text;
+        console.log(listOfTranslations.text)
+        // copyOfUserInput[key][arrKey][targetKey] = listOfTranslations.text;
       } else {
-        copyOfUserInput[key][arrKey] = translationObject.text;
+        copyOfUserInput[key][arrKey] = listOfTranslations.text;
       }
     }
   }
