@@ -5,6 +5,7 @@ import TranslationOutput from './components/translation-output';
 import LoadingIcon from './components/loading';
 import mockTranslation from './data/mockTranslation.json';
 import './App.css';
+import { throws } from 'assert';
 
 interface IState {
   translationList: string;
@@ -29,17 +30,29 @@ export default class App extends React.Component<{}, IState> {
       toLanguage: 'fr'
     }
     this.updateMainState = this.updateMainState.bind(this);
-    this.translateUsersInput = this.translateUsersInput.bind(this);
+    this.setToLoadingThenTranslateUserInput = this.setToLoadingThenTranslateUserInput.bind(this);
   }
 
   updateMainState(newState: object): void {
     this.setState(newState);
   }
 
-  translateUsersInput(): void {
-    let listWithoutCountKeys = Object.keys(this.state.userTypedInput).filter(key => key.indexOf('Count') === -1);
-    let listSeparatedInHalf = this.splitListInHalf(listWithoutCountKeys);
-    this.translate(this.convertToTranslateReadyObject(listSeparatedInHalf[0]), this.convertToTranslateReadyObject(listSeparatedInHalf[1]));
+  setToLoadingThenTranslateUserInput(): void {
+    this.setState({
+      isLoading: true
+    }, () => {
+      this.translateUserInput();
+    })
+  }
+
+  translateUserInput(): void {
+    let arrayOfpropertiesWithoutCounts = this.filterOutCountsFromUserInput();
+    let arraySeparatedInHalf = this.splitListInHalf(arrayOfpropertiesWithoutCounts);
+    this.translate(this.convertToTranslatableObject(arraySeparatedInHalf[0]), this.convertToTranslatableObject(arraySeparatedInHalf[1]));
+  }
+
+  filterOutCountsFromUserInput(): string[] {
+    return Object.keys(this.state.userTypedInput).filter(key => key.indexOf('Count') === -1);
   }
 
   splitListInHalf(list: string[]): string[][] {
@@ -47,11 +60,12 @@ export default class App extends React.Component<{}, IState> {
     return [list.slice(0, halfwayPoint), list.slice(halfwayPoint, list.length)];
   }
   
-  convertToTranslateReadyObject(inputKeys: string[]): object[] {
+  convertToTranslatableObject(inputKeys: string[]): object[] {
     const finalTranslateReadyList: object[] = [];
     for (let i = 0; i < inputKeys.length; i++) {
+      this.generateTranslateReadyObject(this.state.userTypedInput[inputKeys[i]]);
       let translateReadyList = (Array.isArray(this.state.userTypedInput[inputKeys[i]]))
-        ? this.grabArrayValuesAndConvertToTranslateObject(inputKeys[i], this.state.userTypedInput[inputKeys[i]])
+        ? this.getArrayValuesAndConvertToTranslateObject(inputKeys[i], this.state.userTypedInput[inputKeys[i]])
         : this.convertObjectValuesToTranslateObject(this.state.userTypedInput[inputKeys[i]])
         
       finalTranslateReadyList.push.apply(finalTranslateReadyList, translateReadyList);
@@ -59,9 +73,19 @@ export default class App extends React.Component<{}, IState> {
     return finalTranslateReadyList;
   }
 
-  grabArrayValuesAndConvertToTranslateObject(key: string, objectList: object[]): object[] {
-    let targetObjectKey = (key === "autotext") ? "val" : "name";
+  generateTranslateReadyObject(listOfText: string[]): void {
+    console.log(listOfText);
+    // listOfText.map(key => ({"text": translationSection[key]}));
+  
+  }
+
+  getArrayValuesAndConvertToTranslateObject(key: string, objectList: object[]): object[] {
+    let targetObjectKey = this.whichObjectKeyShouldBeUsed(key);
     return objectList.map(objectIndex => ({ "text": objectIndex[targetObjectKey]}))
+  }
+
+  whichObjectKeyShouldBeUsed(key: string): string {
+    return (key === "autotext") ? "val" : "name";
   }
 
   convertObjectValuesToTranslateObject(translationSection: object): object[] {
@@ -72,36 +96,40 @@ export default class App extends React.Component<{}, IState> {
     // Translate the text
     const combinedtranslations: object[] = [{}];
     // Fetch the translations...
-
-    // Combine  The arrays back together for mapping
-    this.mapTranslationsBackToUserInput(mockTranslation);
+    // Combine The arrays back together for mapping
+    this.formatTranslationsThenUI(mockTranslation);
   }
 
-  mapTranslationsBackToUserInput(translationList: object[]): void {
-    const copyOfUserInput = Object.assign({}, this.state.userTypedInput);
-    for (let key in copyOfUserInput) {
-      if (copyOfUserInput[key] instanceof Object) {
-        let translationsForThisObjectKey = translationList.splice(0, Object.keys(copyOfUserInput[key]).length);
-        if (Array.isArray(copyOfUserInput[key])) {
-          let targetKey = (key === "autotext") ? "val" : "name";
-          for (let i = 0; i < copyOfUserInput[key].length; i++) {
-            let translationObject: any = translationsForThisObjectKey.shift();
-            copyOfUserInput[key][i][targetKey] = translationObject.text;
-          }
-        } else {
-          for (let subKey in copyOfUserInput[key]) {
-            let translationObject: any = translationsForThisObjectKey.shift();
-            copyOfUserInput[key][subKey] = translationObject.text;
-          }
-        }
-      }
-    }
+  formatTranslationsThenUI(translationList: object[]): void {
+    const translations = this.addTranslationsToUserInputCopy(translationList);
     this.setState({
-      translationList: JSON.stringify(copyOfUserInput),
+      translationList: JSON.stringify(translations),
       isLoading: false
     });
   }
 
+  addTranslationsToUserInputCopy(translationList: object[]): object {
+    const copyOfUserInput = {...this.state.userTypedInput};
+    for (let key in copyOfUserInput) {
+      if (copyOfUserInput[key] instanceof Object) {
+        this.addtranslationsToUserInputCopy({key, copyOfUserInput, translationList});
+      }
+    }
+    return copyOfUserInput;
+  }
+
+  addtranslationsToUserInputCopy({key, copyOfUserInput, translationList}): void {
+    let translationsForThisObjectKey = translationList.splice(0, Object.keys(copyOfUserInput[key]).length);
+    for (let arrKey in copyOfUserInput[key]) {
+      let translationObject: any = translationsForThisObjectKey.shift();
+      if (Array.isArray(copyOfUserInput[key])) {
+        let targetKey = this.whichObjectKeyShouldBeUsed(key);
+        copyOfUserInput[key][arrKey][targetKey] = translationObject.text;
+      } else {
+        copyOfUserInput[key][arrKey] = translationObject.text;
+      }
+    }
+  }
 
   render() {
     const { isModelShowing, errorMessage, isValidJSON, isLoading, translationList } = this.state;
@@ -113,7 +141,7 @@ export default class App extends React.Component<{}, IState> {
         <TranslationInput updateMainState={this.updateMainState}/>
         <LoadingIcon isLoading={isLoading} />
         <TranslationOutput translationList={translationList} />
-        <button onClick={this.translateUsersInput} disabled={!isValidJSON} className="translate-button">
+        <button onClick={this.setToLoadingThenTranslateUserInput} disabled={!isValidJSON} className="translate-button">
           {isValidJSON === true ? "Translate" : "Not Valid JSON"}
         </button>
       </section>

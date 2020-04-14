@@ -13,12 +13,10 @@ export default class TranslationInput extends React.Component<IProps, {}> {
 
   handleTranslations(e): void {
     if (this.isValidJSON(e.target.value)) {
-      let parsedTypedInput = Object.keys(JSON.parse(e.target.value));
-      if (parsedTypedInput.length > 0) {
-        this.updateState(e.target.value);
-      } else {
-        this.props.updateMainState({ isValidJSON: false });
-      }
+      this.props.updateMainState({ isValidJSON: true });
+      this.activateTranslateButtonIfJSONHasProperties(e.target.value);
+    } else {
+      this.props.updateMainState({ isValidJSON: false });
     }
   }
 
@@ -26,11 +24,18 @@ export default class TranslationInput extends React.Component<IProps, {}> {
     try {
       JSON.parse(input);
     } catch(e) {
-      this.props.updateMainState({ isValidJSON: false });
       return false;
     }
-    this.props.updateMainState({ isValidJSON: true });
     return true;
+  }
+
+  activateTranslateButtonIfJSONHasProperties(inputText: string): void {
+    let inputTextsProperties = Object.keys(JSON.parse(inputText));
+    if (inputTextsProperties.length > 0) {
+      this.updateState(inputText);
+    } else {
+      this.props.updateMainState({ isValidJSON: false });
+    }
   }
 
   updateState(input: string): void {
@@ -39,7 +44,6 @@ export default class TranslationInput extends React.Component<IProps, {}> {
     });
   }
 
-  
   render() {
     return (<div className="textarea-wrapper">
       <textarea onChange={this.handleTranslations} name="translation-input" id="translation-input" className="translation-textarea"></textarea>
