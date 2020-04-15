@@ -62,22 +62,21 @@ export default class App extends React.Component<{}, IState> {
   convertToTranslatableObject(inputKeys: string[]): object[] {
     const finalTranslateReadyList: object[] = [];
     for (let i = 0; i < inputKeys.length; i++) {
-      // this.generateTranslateReadyObject(this.state.userTypedInput[inputKeys[i]]);
-      let translateReadyList = (Array.isArray(this.state.userTypedInput[inputKeys[i]]))
-        ? this.getArrayValuesAndConvertToTranslateObject(inputKeys[i], this.state.userTypedInput[inputKeys[i]])
-        : this.convertObjectValuesToTranslateObject(this.state.userTypedInput[inputKeys[i]])
-        
+      let translateReadyList = this.determineIfCurrentPropertyIsAnArrayOrObjects(inputKeys[i]);
       finalTranslateReadyList.push.apply(finalTranslateReadyList, translateReadyList);
     }
     return finalTranslateReadyList;
   }
 
-  generateTranslateReadyObject(listOfText: string[]): void {
-    // listOfText.map(key => ({"text": translationSection[key]}));
-  
+  determineIfCurrentPropertyIsAnArrayOrObjects(key: string): object[] {
+    if (Array.isArray(this.state.userTypedInput[key])) {
+      return this.convertValuesFromArrayToTranslateObject(key, this.state.userTypedInput[key]);
+    } else {
+      return this.convertValuesFromObjectToTranslateObject(this.state.userTypedInput[key]);
+    }
   }
 
-  getArrayValuesAndConvertToTranslateObject(key: string, objectList: object[]): object[] {
+  convertValuesFromArrayToTranslateObject(key: string, objectList: object[]): object[] {
     let targetObjectKey = this.whichObjectKeyShouldBeUsed(key);
     return objectList.map(objectIndex => ({ "text": objectIndex[targetObjectKey]}))
   }
@@ -85,21 +84,20 @@ export default class App extends React.Component<{}, IState> {
   whichObjectKeyShouldBeUsed(key: string): string {
     return (key === "autotext") ? "val" : "name";
   }
-
-  convertObjectValuesToTranslateObject(translationSection: object): object[] {
+  
+  convertValuesFromObjectToTranslateObject(translationSection: object): object[] {
     return Object.keys(translationSection).map(key => ({"text": translationSection[key]}));
   }
 
   translate(firstTranslateList: object[], secondTranslateList: object[]): void {
-    // Translate the text
     const combinedtranslations: object[] = [{}];
-    // Fetch the translations...
+    // Translate the text
+    // ...
     // Combine The arrays back together for mapping
     this.reformatTranslationsThenDisplay(mockTranslation);
   }
 
   reformatTranslationsThenDisplay(listOfTranslations: object[]): void {
-    console.log(listOfTranslations);
     const translations = this.addTranslationsToCopyOfUserInput(listOfTranslations);
     this.setState({
       translationList: JSON.stringify(translations),
@@ -119,13 +117,11 @@ export default class App extends React.Component<{}, IState> {
 
   combineTranslationsWithCopy({key, copyOfUserInput, translationList}): void {
     let translationsForThisObjectKey = translationList.splice(0, Object.keys(copyOfUserInput[key]).length);
-    for (let arrKey in copyOfUserInput[key]) {
+    for (let arrKey in copyOfUserInput[key]) {    
       let listOfTranslations: any = translationsForThisObjectKey.shift();
       if (Array.isArray(copyOfUserInput[key])) {
-        console.log("Array -------------------");
         let targetKey = this.whichObjectKeyShouldBeUsed(key);
-        console.log(listOfTranslations.text)
-        // copyOfUserInput[key][arrKey][targetKey] = listOfTranslations.text;
+        copyOfUserInput[key][arrKey][targetKey] = listOfTranslations.text;
       } else {
         copyOfUserInput[key][arrKey] = listOfTranslations.text;
       }
