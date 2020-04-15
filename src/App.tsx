@@ -3,6 +3,7 @@ import Header from './components/header';
 import TranslationInput from './components/translation-input';
 import TranslationOutput from './components/translation-output';
 import LoadingIcon from './components/loading';
+import HelpModel from './components/help-model'
 import mockTranslation from './data/mockTranslation.json';
 import './App.css';
 
@@ -135,6 +136,7 @@ export default class App extends React.Component<{}, IState> {
       <Header updateMainState={this.updateMainState} isModelShowing={isModelShowing} />
       <section id="error-message">{errorMessage !== "" ? errorMessage : null}</section>
       <section id="translations-wrapper">
+        <HelpModel updateMainState={this.updateMainState} shouldHelpModelShow={this.state.isModelShowing} />
         <TranslationInput updateMainState={this.updateMainState}/>
         <LoadingIcon isLoading={isLoading} />
         <TranslationOutput translationList={translationList} />

@@ -1,0 +1,38 @@
+.hide-model {
+    visibility: hidden;
+}
+.show-model {
+    visibility: visible;
+}
+#model-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+#help-model {
+    position: absolute;
+    background: white;
+    left: 10%;
+    top: 50%;
+    margin-top: -250px;
+    height: 400px;
+    width: 80%;
+    padding: 15px;
+}
+.hidden {
+    opacity: 0;
+}
+.fadein {
+    opacity: 1;
+}
+.transition {
+    -webkit-transition: visibility 0s, opacity 300ms ease-in-out;
+    -moz-transition: visibility 0s, opacity 300ms ease-in-out;
+    -ms-transition: visibility 0s, opacity 300ms ease-in-out;
+    -o-transition: visibility 0s, opacity 300ms ease-in-out;
+    transition: visibility 0s, opacity 300ms ease-in-out;
+}
