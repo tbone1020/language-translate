@@ -14,14 +14,17 @@
     width: 100%;
 }
 #help-model {
+    box-sizing: border-box;
+    border-radius: 5px;
     position: absolute;
     background: white;
-    left: 10%;
-    top: 50%;
-    margin-top: -250px;
+    left: 50%;
+    margin-left: -480px;
+    top: 150px;
     height: 400px;
+    max-width: 960px;
     width: 80%;
-    padding: 15px;
+    padding: 25px;
 }
 .hidden {
     opacity: 0;
@@ -29,6 +32,48 @@
 .fadein {
     opacity: 1;
 }
+.model-header {
+    color: #555555;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 0 0 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #555555;
+}
+.model-sub-header {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+.model-text {
+    line-height: 25px;
+    padding-bottom: 10px;
+}
+.model-text a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #1CA6F2;
+}
+.model-text a:hover {
+    text-decoration: underline;
+}
+.apply-btn {
+    border-radius: 3px;
+    background-color: #65BBD6;
+    font-weight: bold;
+    font-size: 13px;
+    border-color: #65BBD6;
+    padding: 2px 5px;
+    color: #FFFFFF;
+}
+.close-model {
+    color: #1CA6F2;
+    cursor: pointer;
+    font-size: 18px;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+}
+
 .transition {
     -webkit-transition: visibility 0s, opacity 300ms ease-in-out;
     -moz-transition: visibility 0s, opacity 300ms ease-in-out;

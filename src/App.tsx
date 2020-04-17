@@ -5,6 +5,7 @@ import TranslationOutput from './components/translation-output';
 import LoadingIcon from './components/loading';
 import HelpModel from './components/help-model'
 import mockTranslation from './data/mockTranslation.json';
+import { getTranslations } from './components/helper';
 import './App.css';
 
 interface IState {
@@ -90,20 +91,41 @@ export default class App extends React.Component<{}, IState> {
     return Object.keys(translationSection).map(key => ({"text": translationSection[key]}));
   }
 
-  translate(firstTranslateList: object[], secondTranslateList: object[]): void {
-    const combinedtranslations: object[] = [{}];
-    // Translate the text
-    // ...
-    // Combine The arrays back together for mapping
-    this.reformatTranslationsThenDisplay(mockTranslation);
+  async translate(firstTranslateList: object[], secondTranslateList: object[]): Promise<void> {
+    let firstTranslationSet = await getTranslations(firstTranslateList);
+    let secondTranslationSet = await getTranslations(secondTranslateList);
+    this.checkForAnyErrorsInResponse(firstTranslationSet, secondTranslationSet);
   }
 
-  reformatTranslationsThenDisplay(listOfTranslations: object[]): void {
-    const translations = this.addTranslationsToCopyOfUserInput(listOfTranslations);
+  checkForAnyErrorsInResponse(firstTranslationSet, secondTranslationSet): void {
+    if (typeof firstTranslationSet === "string") {
+      this.displayErrorMessage(firstTranslationSet);
+    } else if (typeof secondTranslationSet === "string") {
+      this.displayErrorMessage(secondTranslationSet);
+    } else {
+      this.reformatTranslationsThenDisplay(firstTranslationSet, secondTranslationSet);
+    }
+  }
+
+  displayErrorMessage(message: string): void {
     this.setState({
-      translationList: JSON.stringify(translations),
-      isLoading: false
-    });
+      errorMessage: message
+    })
+  }
+
+  reformatTranslationsThenDisplay(firstTranslationsList: object[], secondTranslationsList: object[]): void {
+    const combinedTranslations = this.combineBothSetsOfTranslations(firstTranslationsList, secondTranslationsList);
+    console.log(combinedTranslations);
+    // const translations = this.addTranslationsToCopyOfUserInput(combinedTranslations);
+    // this.setState({
+    //   translationList: JSON.stringify(translations),
+    //   isLoading: false
+    // });
+  }
+
+  combineBothSetsOfTranslations(firstSet: object[], secondSet: object[]): object[] {
+    firstSet.push.apply(firstSet, secondSet);
+    return firstSet;
   }
 
   addTranslationsToCopyOfUserInput(translationList: object[]): object {
