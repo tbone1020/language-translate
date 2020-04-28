@@ -8,6 +8,7 @@ textarea {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #dee2e6;
+    font-size: 15px;
     outline: none;
     padding: 15px;
     width: 100%;
@@ -16,4 +17,31 @@ textarea {
 
 .textarea-wrapper {
     flex-basis: 46%;
+}
+
+.from-text {
+    color: #333333;
+    font-family: "Proxima Nova";
+    font-weight: 600;
+    font-size: 17px;
+    padding: 10px 0 13px;
+}
+select {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    color: #1CA6F2;
+    border: 2px solid #1CA6F2;
+    background-color: #fff;
+    font-family: 'proxima_nova_regular', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 150px;
+}
+.left-align {
+    text-align: left;
+}
+.right-align {
+    text-align: right;
 }

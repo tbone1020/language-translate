@@ -92,8 +92,8 @@ export default class App extends React.Component<{}, IState> {
   }
 
   async translate(firstTranslateList: object[], secondTranslateList: object[]): Promise<void> {
-    let firstTranslationSet = await getTranslations(firstTranslateList);
-    let secondTranslationSet = await getTranslations(secondTranslateList);
+    let firstTranslationSet = await getTranslations(firstTranslateList, this.state.toLanguage);
+    let secondTranslationSet = await getTranslations(secondTranslateList, this.state.toLanguage);
     this.checkForAnyErrorsInResponse(firstTranslationSet, secondTranslationSet);
   }
 
@@ -109,18 +109,18 @@ export default class App extends React.Component<{}, IState> {
 
   displayErrorMessage(message: string): void {
     this.setState({
-      errorMessage: message
+      errorMessage: message,
+      isLoading: false
     })
   }
 
   reformatTranslationsThenDisplay(firstTranslationsList: object[], secondTranslationsList: object[]): void {
     const combinedTranslations = this.combineBothSetsOfTranslations(firstTranslationsList, secondTranslationsList);
-    console.log(combinedTranslations);
-    // const translations = this.addTranslationsToCopyOfUserInput(combinedTranslations);
-    // this.setState({
-    //   translationList: JSON.stringify(translations),
-    //   isLoading: false
-    // });
+    const translations = this.addTranslationsToCopyOfUserInput(combinedTranslations);
+    this.setState({
+      translationList: JSON.stringify(translations),
+      isLoading: false
+    });
   }
 
   combineBothSetsOfTranslations(firstSet: object[], secondSet: object[]): object[] {
@@ -144,16 +144,15 @@ export default class App extends React.Component<{}, IState> {
       let listOfTranslations: any = translationsForThisObjectKey.shift();
       if (Array.isArray(copyOfUserInput[key])) {
         let targetKey = this.whichObjectKeyShouldBeUsed(key);
-        copyOfUserInput[key][arrKey][targetKey] = listOfTranslations.text;
+        copyOfUserInput[key][arrKey][targetKey] = listOfTranslations.translations[0].text;
       } else {
-        copyOfUserInput[key][arrKey] = listOfTranslations.text;
+        copyOfUserInput[key][arrKey] = listOfTranslations.translations[0].text;
       }
     }
   }
 
   render() {
     const { isModelShowing, errorMessage, isValidJSON, isLoading, translationList } = this.state;
-    
     return (<main role="main">
       <Header updateMainState={this.updateMainState} isModelShowing={isModelShowing} />
       <section id="error-message">{errorMessage !== "" ? errorMessage : null}</section>
@@ -161,10 +160,8 @@ export default class App extends React.Component<{}, IState> {
         <HelpModel updateMainState={this.updateMainState} shouldHelpModelShow={this.state.isModelShowing} />
         <TranslationInput updateMainState={this.updateMainState}/>
         <LoadingIcon isLoading={isLoading} />
-        <TranslationOutput translationList={translationList} />
-        <button onClick={this.setToLoadingThenTranslateUserInput} disabled={!isValidJSON} className="translate-button">
-          {isValidJSON === true ? "Translate" : "Not Valid JSON"}
-        </button>
+        <TranslationOutput updateMainState={this.updateMainState} translationList={translationList} />
+        <button onClick={this.setToLoadingThenTranslateUserInput} disabled={!isValidJSON} className="translate-button">Translate</button>
       </section>
     </main>);
   }

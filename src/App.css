@@ -24,10 +24,10 @@
     font-size: 16px;
     margin: 25px auto 0;
     cursor: pointer;
-    height: 55px;
-    line-height: 51px;
+    height: 49px;
+    line-height: 44px;
     text-transform: uppercase;
-    flex-basis: 300px;
+    flex-basis: 155px;
 }
 .translate-button:hover {
     background: #1CA6F2;

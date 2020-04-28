@@ -45,8 +45,10 @@ export default class TranslationInput extends React.Component<IProps, {}> {
   }
 
   render() {
-    return (<div className="textarea-wrapper">
-      <textarea onChange={this.handleTranslations} name="translation-input" id="translation-input" className="translation-textarea"></textarea>
+    return (
+    <div className="textarea-wrapper left-align">
+      <h2 className="from-text">English</h2>
+      <textarea placeholder="Enter Valid JSON" onChange={this.handleTranslations} name="translation-input" id="translation-input" className="translation-textarea"></textarea>
     </div>);
   }
 }
