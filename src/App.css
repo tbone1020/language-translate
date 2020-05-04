@@ -11,7 +11,8 @@
     color: #D8000C;
     text-align: center;
     height: 25px;
-    padding: 30px 0;
+    font-size: 22px;
+    padding: 45px 0 20px;
 }
 
 .translate-button {

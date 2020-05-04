@@ -7,7 +7,7 @@ const LoadingIcon = (props) => {
     return (<figure className="to-arrow">
         { props.isLoading === false 
             ? <FontAwesomeIcon icon={faArrowRight} /> 
-            : <FontAwesomeIcon icon={faSpinner} spin />
+            : <FontAwesomeIcon size="lg" icon={faSpinner} spin />
         }
     </figure>)
 }
