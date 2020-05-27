@@ -1,32 +1,42 @@
-export const getTranslations = async (listToTranslate, translateTo) => {
-    // A promise catch is required.
-    // https://www.valentinog.com/blog/throw-async/#how-to-throw-errors-from-async-functions-in-javascript-wrapping-up
-    try {
-        const REQUEST_URL = `https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=${translateTo}`;
-        let response = await fetch('https://jsonplaceholder.typicode.com/todos/'); // , apiRequestOptions(listToTranslate)
-        if (response.status !== 200) throw `Error with API Call: ${response.status} ${getErrorType(response.status)}`;
-        return await response.json();
-    } catch (e) {
-        throw e;
-    }
-}
+import mockTranslation from '../data/mockTranslation.json';
 
-const getErrorType = (status) => {
-    let codeType = status.toString().split('')[0];
-    const errorCode = {
-        "4": "Not Found",
-        "5": "Bad Request"
-    }
-    return errorCode[codeType];
-} 
+export default class API {
+    static URL = 'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en';
 
-const apiRequestOptions = (listToTranslate) => {
-    return {
-        method: 'POST',
-        headers: {
-            'Ocp-Apim-Subscription-Key': 'f44ce021bfa54ac9aa855d71b5250cae',
-            'Content-Type': 'application/json; charset=utf-8',
-        },
-        body: JSON.stringify(listToTranslate)
+    static async getTranslations(listToTranslate, translateTo) {
+        try {
+            let translationsResponse = await fetch(`https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=${translateTo}`, this.getAPIReqestOptions());
+            if (translationsResponse.status >= 200 && translationsResponse.status <= 299) {
+                return await translationsResponse.json();
+            } else {
+                throw `Error with API Call: ${translationsResponse.status} ${this.getErrorType(translationsResponse.status)}`;
+            }
+        } catch (errorMessage) {
+            throw errorMessage;
+        }
+    }
+
+    static getMockTranslations () {
+        return mockTranslation;
+    }
+
+    static getErrorType = (status) => {
+        let codeType = status.toString().split('')[0];
+        const errorCode = {
+            "4": "Bad Request. Check API URL or translation input",
+            "5": "Internal Server Error"
+        }
+        return errorCode[codeType];
+    } 
+
+    static getAPIReqestOptions = (listToTranslate) => {
+        return {
+            method: 'POST',
+            headers: {
+                'Ocp-Apim-Subscription-Key': 'f44ce021bfa54ac9aa855d71b5250cae',
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify(listToTranslate)
+        }
     }
 }

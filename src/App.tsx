@@ -4,7 +4,7 @@ import TranslationInput from './components/translation-input';
 import TranslationOutput from './components/translation-output';
 import LoadingIcon from './components/loading';
 import HelpModel from './components/help-model'
-import { getTranslations } from './components/api';
+import API from './components/api';
 import './App.css';
 
 interface IState {
@@ -12,7 +12,7 @@ interface IState {
   userTypedInput: Object;
   isValidJSON: boolean;
   isModelShowing: boolean;
-  isLoading: boolean; // isTranslating is better
+  isTranslating: boolean; // isTranslating is better
   errorMessage: string;
   toLanguage: string
 }
@@ -25,7 +25,7 @@ export default class App extends React.Component<{}, IState> {
       userTypedInput: "",
       isValidJSON: false,
       isModelShowing: false,
-      isLoading: false,
+      isTranslating: false,
       errorMessage: "",
       toLanguage: 'fr'
     }
@@ -39,32 +39,42 @@ export default class App extends React.Component<{}, IState> {
 
   setToLoadingThenTranslateUserInput(): void {
     this.setState({
-      isLoading: false
+      isTranslating: true
     }, () => {
       this.translateUserInput();
     });
   }
 
   translateUserInput(): void {
-    let arrayOfpropertiesWithoutCounts = this.filterOutCountKeysFromUserInput();
-    let translateReadyObject = this.convertToTranslatableObject(arrayOfpropertiesWithoutCounts);
-    this.translate(translateReadyObject);
+    let listWithoutCountKeys = this.filterOutCountKeysFromUserInput();
+    let translateReadyObject = this.convertListToTranslateReadyeObject(listWithoutCountKeys);
+    let listOfDividedTranslations = this.separateTranslationsIntoChunks(translateReadyObject);
+    this.translateThenDisplay(listOfDividedTranslations);
   }
 
   filterOutCountKeysFromUserInput(): string[] {
     return Object.keys(this.state.userTypedInput).filter(key => key.indexOf('Count') === -1);
   }
 
-  convertToTranslatableObject(inputKeys: string[]): object[] {
+  separateTranslationsIntoChunks(list: object[]): object[] {
+    let copyOfTranslationList = [...list];
+    const dividedTranslationList: any = [];
+    while (copyOfTranslationList.length) {
+      dividedTranslationList.push(copyOfTranslationList.splice(0, 100));
+    }
+    return dividedTranslationList;
+  }
+
+  convertListToTranslateReadyeObject(inputKeys: string[]): object[] {
     const finalTranslateReadyList: object[] = [];
     for (let i = 0; i < inputKeys.length; i++) {
-      let translateReadyList = this.determineIfCurrentPropertyIsAnArrayOrObject(inputKeys[i]);
+      let translateReadyList = this.convertCurrentObjectToTranslatableObject(inputKeys[i]);
       finalTranslateReadyList.push.apply(finalTranslateReadyList, translateReadyList);
     }
     return finalTranslateReadyList;
   }
 
-  determineIfCurrentPropertyIsAnArrayOrObject(key: string): object[] {
+  convertCurrentObjectToTranslatableObject(key: string): object[] {
     if (Array.isArray(this.state.userTypedInput[key])) {
       return this.convertIndexValueFromArrayToTranslatableObject(key, this.state.userTypedInput[key]);
     } else {
@@ -85,75 +95,60 @@ export default class App extends React.Component<{}, IState> {
     return Object.keys(translationSection).map(key => ({"text": translationSection[key]}));
   }
 
-  translate(translationsList: object[]): void {
-    let listOfDividedTranslations = this.divideTranslateList(translationsList);
-    let translatedList = listOfDividedTranslations.map(translatableList => {
-      return getTranslations(translatableList, this.state.toLanguage).catch(error => {
-        this.setState({ errorMessage: error });
+  translateThenDisplay(translationsList: object[]): void {
+    let translatedList = this.translateList(translationsList);
+    // this.reformatAndDisplayTranslations();
+  }
+
+  async translateList(translationList: object[]): Promise<object[]> {
+    const translationsResults = await Promise.all(translationList.map(async list => {
+      return await API.getTranslations(list, this.state.toLanguage).catch(errorMessage => {
+        this.displayErrorMessage(errorMessage);
       });
-    });
-    // this.displayTranslations(firstTranslationSet, secondTranslationSet); */
-  }
-
-  divideTranslateList(list: object[]): object[] {
-    let divideNumber = this.numberOfAPICallsRequired(list);
-    let copyOfTranslationList = [...list];
-    const dividedTranslationList: any = [];
-    while (copyOfTranslationList.length) {
-      dividedTranslationList.push(copyOfTranslationList.splice(0, Math.ceil(list.length / divideNumber)));
-    }
-    return dividedTranslationList;
-  }
-
-  numberOfAPICallsRequired(list: object[]): number {
-    return Math.ceil(JSON.stringify(list).length / 4500);
-  }
-
-  displayTranslations(firstTranslationSet: any, secondTranslationSet: any): void {
-    if (typeof firstTranslationSet === "string") {
-      this.displayErrorMessage(firstTranslationSet);
-    } else if (typeof secondTranslationSet === "string") {
-      this.displayErrorMessage(secondTranslationSet);
-    } else {
-      this.reformatTranslationsThenDisplay(firstTranslationSet, secondTranslationSet);
-    }
+    }));
+    return translationsResults;
   }
 
   displayErrorMessage(message: string): void {
     this.setState({
       errorMessage: message,
-      isLoading: false
+      isTranslating: false
     })
   }
 
-  reformatTranslationsThenDisplay(firstTranslationsList: object[], secondTranslationsList: object[]): void {
-    const combinedTranslations = this.combineBothSetsOfTranslations(firstTranslationsList, secondTranslationsList);
-    const translations = this.addTranslationsToCopyOfUserInput(combinedTranslations);
+  reformatAndDisplayTranslations(translationsList: object[]): void {
+    const combinedTranslations = this.flattenTranslationsList(translationsList);
+    const translations = this.mapTranslationsBackToUserInput(combinedTranslations);
     this.setState({
       translationList: JSON.stringify(translations),
-      isLoading: false
+      isTranslating: false
     });
   }
 
-  combineBothSetsOfTranslations(firstSet: object[], secondSet: object[]): object[] {
-    firstSet.push.apply(firstSet, secondSet);
-    return firstSet;
+  flattenTranslationsList(translationsList: object[]): object[] {
+    const combinedTranslationList: any = [];
+    for (let i = 0; i < translationsList.length; i++) {
+      combinedTranslationList.push.apply(combinedTranslationList, translationsList[i]);
+    }
+    return combinedTranslationList;
   }
 
-  addTranslationsToCopyOfUserInput(translationList: object[]): object {
+  mapTranslationsBackToUserInput(translationList: object[]): object {
     const copyOfUserInput = {...this.state.userTypedInput};
     for (let key in copyOfUserInput) {
       if (copyOfUserInput[key] instanceof Object) {
-        this.combineTranslationsWithCopy({key, copyOfUserInput, translationList});
+        this.combineTranslationsWithInput({key, copyOfUserInput, translationList});
       }
     }
     return copyOfUserInput;
   }
 
-  combineTranslationsWithCopy({key, copyOfUserInput, translationList}): void {
+  combineTranslationsWithInput({key, copyOfUserInput, translationList}): void {
     let translationsForThisObjectKey = translationList.splice(0, Object.keys(copyOfUserInput[key]).length);
-    for (let arrKey in copyOfUserInput[key]) {    
+
+    for (let arrKey in copyOfUserInput[key]) {
       let listOfTranslations: any = translationsForThisObjectKey.shift();
+      console.log(listOfTranslations);
       if (Array.isArray(copyOfUserInput[key])) {
         let targetKey = this.whichObjectKeyShouldBeUsed(key);
         copyOfUserInput[key][arrKey][targetKey] = listOfTranslations.translations[0].text;
@@ -164,7 +159,7 @@ export default class App extends React.Component<{}, IState> {
   }
 
   render() {
-    const { isModelShowing, errorMessage, isValidJSON, isLoading, translationList } = this.state;
+    const { isModelShowing, errorMessage, isValidJSON, isTranslating, translationList } = this.state;
     
     return (<main role="main">
       <Header updateMainState={this.updateMainState} isModelShowing={isModelShowing} />
@@ -172,7 +167,7 @@ export default class App extends React.Component<{}, IState> {
       <section id="translations-wrapper">
         <HelpModel updateMainState={this.updateMainState} shouldHelpModelShow={this.state.isModelShowing} />
         <TranslationInput updateMainState={this.updateMainState}/>
-        <LoadingIcon isLoading={isLoading} />
+        <LoadingIcon isTranslating={isTranslating} />
         <TranslationOutput updateMainState={this.updateMainState} translationList={translationList} />
         <button onClick={this.setToLoadingThenTranslateUserInput} disabled={!isValidJSON} className="translate-button">Translate</button>
       </section>

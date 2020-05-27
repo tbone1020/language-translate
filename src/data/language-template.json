@@ -1,31 +1,28 @@
 {
     "country": [
-    {
-        "id": "1",
-        "name": "U.S. Products"
-    },
-    {
-        "id": "2",
-        "name": "Canadian Products"
-    }],
+        {
+            "id": "1",
+            "name": "U.S. Products"
+        },
+        {
+            "id": "2",
+            "name": "Canadian Products"
+        }
+    ],
     "countryCount": "2",
     "lang": [
-    {
-        "id": "US-EN",
-        "name": "English"
-    },
-    {
-        "id": "CA-FR",
-        "name": "Canadian French"
-    },
-    {
-        "id": "CA-EN",
-        "name": "Canada - English"
-    }],
-    "langCount": 3,
-    "search":
-    {
-        "searchField": "Enter city / zip code",
+        {
+            "id": "US-EN",
+            "name": "English"
+        },
+        {
+            "id": "CA-FR",
+            "name": "Canadian French"
+        }
+    ],
+    "langCount": 2,
+    "search": {
+        "searchField": "Enter Postal Code / Zip Code",
         "subButton": "Find",
         "cpButton": "Refine Search",
         "geoButton": "Search nearby",
@@ -37,8 +34,7 @@
         "selectButton": "Select",
         "findText": "Make a Selection"
     },
-    "deals":
-    {
+    "deals": {
         "countSingle": "Deal Found",
         "countPlural": "Deals Found",
         "numSingle": "Deal",
@@ -49,8 +45,7 @@
         "dealTextStart": "View",
         "dealTextEnd": ""
     },
-    "products":
-    {
+    "products": {
         "selSingle": "Selected Product",
         "selPlural": "Selected Products",
         "selAll": "All",
@@ -68,8 +63,7 @@
         "filterField": "Search favourite product",
         "labelCrumb": "Showing products for:"
     },
-    "results":
-    {
+    "results": {
         "prevTen": "",
         "nextTen": "View more",
         "noProdSel": "No Products Selected",
@@ -88,8 +82,7 @@
         "emailTab": "Email",
         "externalMap": "Directions"
     },
-    "ecomm":
-    {
+    "ecomm": {
         "avSingle": "Product Available Online",
         "avPlural": "Buy online",
         "avAlt": "More Products Online",
@@ -104,8 +97,7 @@
         "outStock": "Out of Stock",
         "detailText": "Details"
     },
-    "contactForm":
-    {
+    "contactForm": {
         "goButton": "Contact Us",
         "headerText": "No Stores Found",
         "bodyText": "Oh no! Try increasing the search radius or complete the form to request products near you.",
@@ -121,8 +113,7 @@
         "countryField": "Select a Country",
         "subButton": "Submit"
     },
-    "addStore":
-    {
+    "addStore": {
         "goButton": "click here",
         "fnameField": "First Name",
         "lnameField": "Last Name",
@@ -138,8 +129,7 @@
         "sphoneField": "Phone Number",
         "subButton": "Submit"
     },
-    "conAffairs":
-    {
+    "conAffairs": {
         "sessStart": "Start New Session",
         "sessEnd": "End Session",
         "respEmailField": "Email Address",
@@ -151,8 +141,7 @@
         "copyText": "Copy",
         "copiedText": "Copied"
     },
-    "alerts":
-    {
+    "alerts": {
         "invalidLocation": "Please Enter a Valid Location.",
         "noLocation": "We are sorry, but we could not find your location.",
         "prodSwitchTitle": "Please confirm your search.",
@@ -169,138 +158,138 @@
         "reqFields": "Please fill out required fields.",
         "requestReceipt": "We have received your request."
     },
-    "other":
-    {
+    "other": {
         "genSlider": "Select One"
     },
     "autotextCount": "32",
     "autotext": [
-    {
-        "name": "hero_header",
-        "val": "Find Near You"
-    },
-    {
-        "name": "sub-header",
-        "val": "Looking for a specific product? Make your selection below."
-    },
-    {
-        "name": "mobile_label_button",
-        "val": "Product categories"
-    },
-    {
-        "name": "filter_header",
-        "val": "Filter products:"
-    },
-    {
-        "name": "email_input_header",
-        "val": "Send store details & directions"
-    },
-    {
-        "name": "results",
-        "val": "Total results"
-    },
-    {
-        "name": "display",
-        "val": "Displaying"
-    },
-    {
-        "name": "retailers_1",
-        "val": "Retailers,"
-    },
-    {
-        "name": "retailers_2",
-        "val": "to add your store."
-    },
-    {
-        "name": "products_fine_print",
-        "val": "Products subject to availability."
-    },
-    {
-        "name": "no_stores_header",
-        "val": "Dang!"
-    },
-    {
-        "name": "no_stores_txt",
-        "val": "The selected products aren't yet available near this location. But, good news: you can always buy online."
-    },
-    {
-        "name": "contact_form_header",
-        "val": "Contact Info"
-    },
-    {
-        "name": "select_form_header",
-        "val": "Store Info"
-    },
-    {
-        "name": "select_products",
-        "val": "Select Products"
-    },
-    {
-        "name": "Location",
-        "val": "Location"
-    },
-    {
-        "name": "route_overview",
-        "val": "Route Overview"
-    },
-    {
-        "name": "retail_header",
-        "val": "Retail Request Form"
-    },
-    {
-        "name": "retail_txt",
-        "val": "Have your location listed by completing the form below."
-    },
-    {
-        "name": "nextTen_off",
-        "val": "View more"
-    },
-    {
-        "name": "email_request",
-        "val": "Your Email Request"
-    },
-    {
-        "name": "storedetails_thankyou",
-        "val": "Thank you for your interest in our products."
-    },
-    {
-        "name": "storedetails_sub",
-        "val": "Here are the store details and directions you requested:"
-    },
-    {
-        "name": "storedetails_heading",
-        "val": "Store details"
-    },
-    {
-        "name": "email_directions",
-        "val": "Directions to this location"
-    },
-    {
-        "name": "print_request",
-        "val": "Your print request"
-    },
-    {
-        "name": "storedetails_subthankyou",
-        "val": "Here is the store list you requested:"
-    },
-    {
-        "name": "no_stores_sub_txt",
-        "val": "Or broaden the search and try again!"
-    },
-    {
-        "name": "panel_4_buy_online",
-        "val": "Buy online"
-    },
-    {
-        "name": "cart_text",
-        "val": "Products selected"
-    },
-    {
-        "name": "category_label_header",
-        "val": "Categories"
-    },
-    {
-        "name": "p2_email_input_header",
-        "val": "Send store details"
-    }]
+        {
+            "name": "hero_header",
+            "val": "FIND Some Kick Ass Coffee!"
+        },
+        {
+            "name": "sub-header",
+            "val": "Looking for a specific product? Make your selection below."
+        },
+        {
+            "name": "mobile_label_button",
+            "val": "Product categories"
+        },
+        {
+            "name": "filter_header",
+            "val": "Filter products:"
+        },
+        {
+            "name": "email_input_header",
+            "val": "Send store details & directions"
+        },
+        {
+            "name": "results",
+            "val": "Total results"
+        },
+        {
+            "name": "display",
+            "val": "Displaying"
+        },
+        {
+            "name": "retailers_1",
+            "val": "Retailers,"
+        },
+        {
+            "name": "retailers_2",
+            "val": "to add your store."
+        },
+        {
+            "name": "products_fine_print",
+            "val": "Products subject to availability."
+        },
+        {
+            "name": "no_stores_header",
+            "val": "Dang!"
+        },
+        {
+            "name": "no_stores_txt",
+            "val": "The selected products aren't yet available near this location. Enter a postal / zip code."
+        },
+        {
+            "name": "contact_form_header",
+            "val": "Contact Info"
+        },
+        {
+            "name": "select_form_header",
+            "val": "Store Info"
+        },
+        {
+            "name": "select_products",
+            "val": "Select Products"
+        },
+        {
+            "name": "Location",
+            "val": "Location"
+        },
+        {
+            "name": "route_overview",
+            "val": "Route Overview"
+        },
+        {
+            "name": "retail_header",
+            "val": "Retail Request Form"
+        },
+        {
+            "name": "retail_txt",
+            "val": "Have your location listed by completing the form below."
+        },
+        {
+            "name": "nextTen_off",
+            "val": "View more"
+        },
+        {
+            "name": "email_request",
+            "val": "Your Email Request"
+        },
+        {
+            "name": "storedetails_thankyou",
+            "val": "Thank you for your interest in our products."
+        },
+        {
+            "name": "storedetails_sub",
+            "val": "Here are the store details and directions you requested:"
+        },
+        {
+            "name": "storedetails_heading",
+            "val": "Store details"
+        },
+        {
+            "name": "email_directions",
+            "val": "Directions to this location"
+        },
+        {
+            "name": "print_request",
+            "val": "Your print request"
+        },
+        {
+            "name": "storedetails_subthankyou",
+            "val": "Here is the store list you requested:"
+        },
+        {
+            "name": "no_stores_sub_txt",
+            "val": "Looking for Ground or Whole Bean coffee? Good news: you can also buy online."
+        },
+        {
+            "name": "panel_4_buy_online",
+            "val": "Buy online"
+        },
+        {
+            "name": "cart_text",
+            "val": "Products selected"
+        },
+        {
+            "name": "category_label_header",
+            "val": "Categories"
+        },
+        {
+            "name": "p2_email_input_header",
+            "val": "Send store details"
+        }
+    ]
 }

@@ -5,7 +5,7 @@ import './loading.css';
 
 const LoadingIcon = (props) => {
     return (<figure className="to-arrow">
-        { props.isLoading === false 
+        { props.isTranslating === false 
             ? <FontAwesomeIcon icon={faArrowRight} /> 
             : <FontAwesomeIcon size="lg" icon={faSpinner} spin />
         }
