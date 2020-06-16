@@ -12,7 +12,7 @@ interface IState {
   userTypedInput: Object;
   isValidJSON: boolean;
   isModelShowing: boolean;
-  isTranslating: boolean; // isTranslating is better
+  isTranslating: boolean;
   errorMessage: string;
   toLanguage: string
 }
@@ -84,7 +84,7 @@ export default class App extends React.Component<{}, IState> {
 
   convertIndexValueFromArrayToTranslatableObject(key: string, objectList: object[]): object[] {
     let targetObjectKey = this.whichObjectKeyShouldBeUsed(key);
-    return objectList.map(objectIndex => ({ "text": objectIndex[targetObjectKey]}))
+    return objectList.map(objectIndex => ({ "Text": objectIndex[targetObjectKey]}))
   }
 
   whichObjectKeyShouldBeUsed(key: string): string {
@@ -96,17 +96,19 @@ export default class App extends React.Component<{}, IState> {
   }
 
   translateThenDisplay(translationsList: object[]): void {
-    let translatedList = this.translateList(translationsList);
-    // this.reformatAndDisplayTranslations();
+    API.getTranslations(translationsList, this.state.toLanguage).then(translationResult => {
+      this.displayTranslationsIfSuccessful(translationResult);
+    }).catch(errorMessage => {
+      this.displayErrorMessage(errorMessage);
+    });
   }
 
-  async translateList(translationList: object[]): Promise<object[]> {
-    const translationsResults = await Promise.all(translationList.map(async list => {
-      return await API.getTranslations(list, this.state.toLanguage).catch(errorMessage => {
-        this.displayErrorMessage(errorMessage);
-      });
-    }));
-    return translationsResults;
+  displayTranslationsIfSuccessful({response, isSuccessful}): void {
+    if (isSuccessful) {
+      this.reformatAndDisplayTranslations(response);
+    } else {
+      this.displayErrorMessage(response);
+    }
   }
 
   displayErrorMessage(message: string): void {
@@ -125,12 +127,8 @@ export default class App extends React.Component<{}, IState> {
     });
   }
 
-  flattenTranslationsList(translationsList: object[]): object[] {
-    const combinedTranslationList: any = [];
-    for (let i = 0; i < translationsList.length; i++) {
-      combinedTranslationList.push.apply(combinedTranslationList, translationsList[i]);
-    }
-    return combinedTranslationList;
+  flattenTranslationsList(translationsList: any): object[] {
+    return translationsList.reduce((flattenedArray, item) => flattenedArray.concat(item));
   }
 
   mapTranslationsBackToUserInput(translationList: object[]): object {
@@ -145,10 +143,8 @@ export default class App extends React.Component<{}, IState> {
 
   combineTranslationsWithInput({key, copyOfUserInput, translationList}): void {
     let translationsForThisObjectKey = translationList.splice(0, Object.keys(copyOfUserInput[key]).length);
-
     for (let arrKey in copyOfUserInput[key]) {
       let listOfTranslations: any = translationsForThisObjectKey.shift();
-      console.log(listOfTranslations);
       if (Array.isArray(copyOfUserInput[key])) {
         let targetKey = this.whichObjectKeyShouldBeUsed(key);
         copyOfUserInput[key][arrKey][targetKey] = listOfTranslations.translations[0].text;
@@ -165,7 +161,7 @@ export default class App extends React.Component<{}, IState> {
       <Header updateMainState={this.updateMainState} isModelShowing={isModelShowing} />
       <section id="error-message">{errorMessage !== "" ? errorMessage : null}</section>
       <section id="translations-wrapper">
-        <HelpModel updateMainState={this.updateMainState} shouldHelpModelShow={this.state.isModelShowing} />
+        <HelpModel updateMainState={this.updateMainState} shouldHelpModelShow={isModelShowing} />
         <TranslationInput updateMainState={this.updateMainState}/>
         <LoadingIcon isTranslating={isTranslating} />
         <TranslationOutput updateMainState={this.updateMainState} translationList={translationList} />
