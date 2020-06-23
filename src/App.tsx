@@ -29,6 +29,7 @@ export default class App extends React.Component<{}, IState> {
       errorMessage: "",
       toLanguage: 'fr'
     }
+    
     this.updateMainState = this.updateMainState.bind(this);
     this.setToLoadingThenTranslateUserInput = this.setToLoadingThenTranslateUserInput.bind(this);
   }
@@ -47,7 +48,7 @@ export default class App extends React.Component<{}, IState> {
 
   translateUserInput(): void {
     let listWithoutCountKeys = this.filterOutCountKeysFromUserInput();
-    let translateReadyObject = this.convertListToTranslateReadyeObject(listWithoutCountKeys);
+    let translateReadyObject = this.convertListToTranslateReadyObject(listWithoutCountKeys);
     let listOfDividedTranslations = this.separateTranslationsIntoChunks(translateReadyObject);
     this.translateThenDisplay(listOfDividedTranslations);
   }
@@ -56,7 +57,7 @@ export default class App extends React.Component<{}, IState> {
     return Object.keys(this.state.userTypedInput).filter(key => key.indexOf('Count') === -1);
   }
 
-  convertListToTranslateReadyeObject(inputKeys: string[]): object[] {
+  convertListToTranslateReadyObject(inputKeys: string[]): object[] {
     const finalTranslateReadyList: object[] = [];
     for (let i = 0; i < inputKeys.length; i++) {
       let translateReadyList = this.convertCurrentObjectToTranslatableObject(inputKeys[i]);
@@ -115,7 +116,7 @@ export default class App extends React.Component<{}, IState> {
     this.setState({
       errorMessage: message,
       isTranslating: false
-    })
+    });
   }
 
   reformatAndDisplayTranslations(translationsList: object[]): void {
@@ -142,7 +143,7 @@ export default class App extends React.Component<{}, IState> {
   }
 
   combineTranslationsWithInput({key, copyOfUserInput, translationList}): void {
-    let translationsForThisObjectKey = translationList.splice(0, Object.keys(copyOfUserInput[key]).length);
+    const translationsForThisObjectKey = translationList.splice(0, Object.keys(copyOfUserInput[key]).length);
     for (let arrKey in copyOfUserInput[key]) {
       let listOfTranslations: any = translationsForThisObjectKey.shift();
       if (Array.isArray(copyOfUserInput[key])) {

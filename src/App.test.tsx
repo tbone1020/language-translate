@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from "react-dom";
-import { create } from "react-test-renderer";
 import { act } from 'react-dom/test-utils';
 import App from './App';
 import TranslationInput from './components/translation-input';
@@ -13,37 +12,48 @@ describe('Translating user input', () => {
   });
 
   describe('HTML renders properly', () => {
-    let container = null;
+    let HTMLContainer = null;
     
     beforeEach(()=> {
-      container = document.createElement("div");
-      document.body.appendChild(container);
+      HTMLContainer = document.createElement("div");
+      document.body.appendChild(HTMLContainer);
     });
 
     afterEach(() => {
-      unmountComponentAtNode(container);
-      container.remove();
-      container = null;
+      unmountComponentAtNode(HTMLContainer);
+      HTMLContainer.remove();
+      HTMLContainer = null;
     });
 
     it ('should show translate button as disabled if user input is invalid', () => {
       act(() => {
-        render(<App />, container);
+        render(<App />, HTMLContainer);
       });
 
-      expect(container.querySelector('.translate-button').disabled).toBe(true);
+      expect(HTMLContainer.querySelector('.translate-button').disabled).toBe(true);
     });
 
     it ('should show translate button as enabled if user input is valid', () => {
       act(() => {
-        render(<TranslationInput updateMainState={container.updateMainState}/>, container);
+        render(<TranslationInput updateMainState={HTMLContainer.updateMainState}/>, HTMLContainer);
       });
 
-      const givenTranslationInput = container.querySelector('#translation-input');
+      const givenTranslationInput = HTMLContainer.querySelector('#translation-input');
 
       givenTranslationInput.value = "{Text: 'Valid user input'}";
       
       expect(givenTranslationInput.disabled).toBe(false);
+    });
+
+    it ("should display the error when errorMessage isn't empty", () => {
+      appComponent.state.errorMessage = "404 error";
+
+      act(() => {
+        render(<App />, HTMLContainer);
+      });
+
+      
+      // console.log(HTMLContainer.querySelector('#error-message').textContent);
     });
 
   });
@@ -79,7 +89,7 @@ describe('Translating user input', () => {
         }]
       }
   
-      let whenSentForTranslation = appComponent.convertListToTranslateReadyeObject(["search", "autotext"]);
+      let whenSentForTranslation = appComponent.convertListToTranslateReadyObject(["search", "autotext"]);
       
       expect(whenSentForTranslation[0].text).toEqual("Enter Postal Code / Zip Code");
       expect(whenSentForTranslation[1].text).toEqual("Find");

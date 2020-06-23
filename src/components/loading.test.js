@@ -3,7 +3,7 @@ import LoadingIcon from './loading';
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from '@testing-library/react';
  
-describe('in loading state', () => {
+describe('loading state', () => {
     let container = null;
     
     beforeEach(() => {
@@ -18,23 +18,25 @@ describe('in loading state', () => {
     });
 
     it ('displays arrow icon when isTranslating is false', () => {
-        act(() => {
-            render(<LoadingIcon isTranslating={false} />, container);
-        });
+        const givenIsTranslatingIsFalse = false;
+        const arrowIcon = '.to-arrow > .fa-arrow-right';
 
-        const whenIsLoadingIsFalse = container.querySelector('.to-arrow > svg');
+        act(() => {
+            render(<LoadingIcon isTranslating={givenIsTranslatingIsFalse} />, container);
+        });
         
-        expect(whenIsLoadingIsFalse.getAttribute('data-icon')).toEqual('arrow-right');
+        expect(container.querySelector(arrowIcon)).toBeTruthy();
     });
 
     it ('displays spinning icon when isTranslating is true', () => {
-        act(() => {
-            render(<LoadingIcon isTranslating={true} />, container);
-        });
+        const givenIsTranslatingIsTrue = true;
+        const loadingIcon = '.to-arrow > .fa-spinner';
 
-        const whenIsLoadingIsTrue = container.querySelector('.to-arrow > svg');
-        
-        expect(whenIsLoadingIsTrue.getAttribute('data-icon')).toEqual('spinner');
+        act(() => {
+            render(<LoadingIcon isTranslating={givenIsTranslatingIsTrue} />, container);
+        });
+    
+        expect(container.querySelector(loadingIcon)).toBeTruthy();
     });
 
 });
