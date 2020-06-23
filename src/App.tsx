@@ -56,15 +56,6 @@ export default class App extends React.Component<{}, IState> {
     return Object.keys(this.state.userTypedInput).filter(key => key.indexOf('Count') === -1);
   }
 
-  separateTranslationsIntoChunks(list: object[]): object[] {
-    let copyOfTranslationList = [...list];
-    const dividedTranslationList: any = [];
-    while (copyOfTranslationList.length) {
-      dividedTranslationList.push(copyOfTranslationList.splice(0, 100));
-    }
-    return dividedTranslationList;
-  }
-
   convertListToTranslateReadyeObject(inputKeys: string[]): object[] {
     const finalTranslateReadyList: object[] = [];
     for (let i = 0; i < inputKeys.length; i++) {
@@ -73,7 +64,7 @@ export default class App extends React.Component<{}, IState> {
     }
     return finalTranslateReadyList;
   }
-
+  
   convertCurrentObjectToTranslatableObject(key: string): object[] {
     if (Array.isArray(this.state.userTypedInput[key])) {
       return this.convertIndexValueFromArrayToTranslatableObject(key, this.state.userTypedInput[key]);
@@ -84,7 +75,7 @@ export default class App extends React.Component<{}, IState> {
 
   convertIndexValueFromArrayToTranslatableObject(key: string, objectList: object[]): object[] {
     let targetObjectKey = this.whichObjectKeyShouldBeUsed(key);
-    return objectList.map(objectIndex => ({ "Text": objectIndex[targetObjectKey]}))
+    return objectList.map(objectIndex => ({ "text": objectIndex[targetObjectKey]}))
   }
 
   whichObjectKeyShouldBeUsed(key: string): string {
@@ -93,6 +84,15 @@ export default class App extends React.Component<{}, IState> {
 
   convertValuesFromObjectToTranslateObject(translationSection: object): object[] {
     return Object.keys(translationSection).map(key => ({"text": translationSection[key]}));
+  }
+
+  separateTranslationsIntoChunks(list: object[]): object[] {
+    let copyOfTranslationList = [...list];
+    const dividedTranslationList: any = [];
+    while (copyOfTranslationList.length) {
+      dividedTranslationList.push(copyOfTranslationList.splice(0, 100));
+    }
+    return dividedTranslationList;
   }
 
   translateThenDisplay(translationsList: object[]): void {
@@ -165,7 +165,7 @@ export default class App extends React.Component<{}, IState> {
         <TranslationInput updateMainState={this.updateMainState}/>
         <LoadingIcon isTranslating={isTranslating} />
         <TranslationOutput updateMainState={this.updateMainState} translationList={translationList} />
-        <button onClick={this.setToLoadingThenTranslateUserInput} disabled={!isValidJSON} className="translate-button">Translate</button>
+        <button className="translate-button" onClick={this.setToLoadingThenTranslateUserInput} disabled={!isValidJSON}>Translate</button>
       </section>
     </main>);
   }

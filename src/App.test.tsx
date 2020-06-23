@@ -1,6 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, unmountComponentAtNode } from "react-dom";
+import { create } from "react-test-renderer";
+import { act } from 'react-dom/test-utils';
 import App from './App';
+import TranslationInput from './components/translation-input';
 
 describe('Translating user input', () => {
   let appComponent;
@@ -9,79 +12,192 @@ describe('Translating user input', () => {
     appComponent = new App({});
   });
 
-  it('should remove all "Count" keys from object', () => {
-    appComponent.state.userTypedInput = {
-      countryCount: 10,
-      langCount: 5,
-      autotextCount: 20,
-    }
+  describe('HTML renders properly', () => {
+    let container = null;
     
-    let filteredObject = appComponent.filterOutCountKeysFromUserInput();
-    
-    expect(filteredObject.hasOwnProperty('countryCount')).toEqual(false);
-    expect(filteredObject.hasOwnProperty('langCount')).toEqual(false);
-    expect(filteredObject.hasOwnProperty('autotextCount')).toEqual(false);
+    beforeEach(()=> {
+      container = document.createElement("div");
+      document.body.appendChild(container);
+    });
+
+    afterEach(() => {
+      unmountComponentAtNode(container);
+      container.remove();
+      container = null;
+    });
+
+    it ('should show translate button as disabled if user input is invalid', () => {
+      act(() => {
+        render(<App />, container);
+      });
+
+      expect(container.querySelector('.translate-button').disabled).toBe(true);
+    });
+
+    it ('should show translate button as enabled if user input is valid', () => {
+      act(() => {
+        render(<TranslationInput updateMainState={container.updateMainState}/>, container);
+      });
+
+      const givenTranslationInput = container.querySelector('#translation-input');
+
+      givenTranslationInput.value = "{Text: 'Hello, this is a test'}";
+      
+      expect(givenTranslationInput.disabled).toBe(false);
+    });
+
   });
 
-  it('should divide an array into a multidimensional array', () => {
-    const givenLongArrayList = [];
-    for (let i = 0; i < 160; i++) {
-      givenLongArrayList.push("Testing");
-    }
+  describe('prepping users input for translation', () => {
 
-    let whenArrayIsDivided = appComponent.separateTranslationsIntoChunks(givenLongArrayList);
+    it ('should remove all "Count" keys from object', () => {
+      appComponent.state.userTypedInput = {
+        countryCount: 10,
+        langCount: 5,
+        autotextCount: 20,
+      }
+      
+      let filteredObject = appComponent.filterOutCountKeysFromUserInput();
+      
+      expect(filteredObject.hasOwnProperty('countryCount')).toEqual(false);
+      expect(filteredObject.hasOwnProperty('langCount')).toEqual(false);
+      expect(filteredObject.hasOwnProperty('autotextCount')).toEqual(false);
+    });
+
+    it ('should create an array of translatable objects', () => {
+      appComponent.state.userTypedInput = {
+        "search": {
+          "searchField": "Enter Postal Code / Zip Code",
+          "subButton": "Find"
+        },
+        "autotext": [{
+            "name": "hero_header",
+            "val": "Find coffee near you"
+          }, {
+            "name": "sub-header",
+            "val": "Make your selection below."
+        }]
+      }
+  
+      let whenSentForTranslation = appComponent.convertListToTranslateReadyeObject(["search", "autotext"]);
+      
+      expect(whenSentForTranslation[0].text).toEqual("Enter Postal Code / Zip Code");
+      expect(whenSentForTranslation[1].text).toEqual("Find");
+      expect(whenSentForTranslation[2].text).toEqual("Find coffee near you");
+      expect(whenSentForTranslation[3].text).toEqual("Make your selection below.");
+    });
+
+    it ('should return a translate object if an array is passed in', () => {
+      appComponent.state.userTypedInput = {
+        "autotext": [{
+          "name": "hero_header",
+          "val": "Find coffee near you"
+        }, {
+          "name": "sub-header",
+          "val": "Make your selection below."
+        }]
+      }
+  
+      let whenTestArrayIsConverted = appComponent.convertCurrentObjectToTranslatableObject("autotext");
+  
+      expect(whenTestArrayIsConverted[0].text).toEqual("Find coffee near you");
+      expect(whenTestArrayIsConverted[1].text).toEqual("Make your selection below.");
+    });
+
+    it ('should return a translate object if an object is passed in', () => {
+      appComponent.state.userTypedInput = {
+        "search": {
+          "searchField": "Enter Postal Code / Zip Code",
+          "subButton": "Find"
+        }
+      }
+  
+      let whenTestObjectIsConverted = appComponent.convertCurrentObjectToTranslatableObject("search");
+      
+      expect(whenTestObjectIsConverted[0].text).toEqual("Enter Postal Code / Zip Code");
+      expect(whenTestObjectIsConverted[1].text).toEqual("Find");
+    });
+
+    it ('should divide an array into a multidimensional array', () => {
+      const givenLongArrayList = [];
+      for (let i = 0; i < 160; i++) {
+        givenLongArrayList.push("Testing");
+      }
+  
+      let whenArrayIsDivided = appComponent.separateTranslationsIntoChunks(givenLongArrayList);
+      
+      expect(whenArrayIsDivided[0].length).toEqual(100);
+      expect(whenArrayIsDivided[1].length).toEqual(60);
+    });
     
-    expect(whenArrayIsDivided[0].length).toEqual(100);
-    expect(whenArrayIsDivided[1].length).toEqual(60);
+    it ('should check if text key has proper value', () => {
+      let givenObject = {
+        "testKeyNumber1": "Testing first object key",
+        "testKeyNumber2": "Testing second object key"
+      };
+  
+      let whenConvertedToTranslateObject = appComponent.convertValuesFromObjectToTranslateObject(givenObject);
+      
+      expect(whenConvertedToTranslateObject[0].text).toEqual('Testing first object key');
+      expect(whenConvertedToTranslateObject[1].text).toEqual('Testing second object key');
+    });
+
+    it ('convertIndexValueFromArrayToTranslatableObject()', () => {
+  
+    });
+  
+    it ('should return the text "val"', () => {
+      let givenObjectKey = "autotext";
+  
+      let whenKeyIsPassedIn = appComponent.whichObjectKeyShouldBeUsed(givenObjectKey);
+      
+      expect(whenKeyIsPassedIn).toEqual("val");
+    });
+  
+    it ('should return the text "name"', () => {
+      let givenCountryKey = "country";
+      let givenLangKey = "lang";
+  
+      let whenCountryIsPassedIn = appComponent.whichObjectKeyShouldBeUsed(givenCountryKey);
+      let whenLangIsPassedIn = appComponent.whichObjectKeyShouldBeUsed(givenLangKey);
+      
+      expect(whenCountryIsPassedIn).toEqual("name");
+      expect(whenLangIsPassedIn).toEqual("name");
+    });
+
   });
 
-  it ('should convert to translate ready object', () => {
+  describe('translating user input', () => {
 
   });
 
-
-
-  it('should return the text "val"', () => {
-    let givenObjectKey = "autotext";
-
-    let whenKeyIsPassedIn = appComponent.whichObjectKeyShouldBeUsed(givenObjectKey);
+  describe('map translations back to user input', () => {
     
-    expect(whenKeyIsPassedIn).toEqual("val");
+    it ('should flatten a multidimensional array', () => {
+      const givenMultidimensionalArray = [["test", "test", "test"], ["test", "test", "test"], ["test", "test", "test"]];
+      
+      let whenArrayIsFlattened = appComponent.flattenTranslationsList(givenMultidimensionalArray);
+      
+      expect(whenArrayIsFlattened.length).toEqual(9);
+    });
+
   });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-  it('should return the text "name"', () => {
-    let givenCountryKey = "country";
-    let givenLangKey = "lang";
-
-    let whenCountryIsPassedIn = appComponent.whichObjectKeyShouldBeUsed(givenCountryKey);
-    let whenLangIsPassedIn = appComponent.whichObjectKeyShouldBeUsed(givenLangKey);
-    
-    expect(whenCountryIsPassedIn).toEqual("name");
-    expect(whenLangIsPassedIn).toEqual("name");
-  });
-
-  it('should flatten a multidimensional array', () => {
-    const givenMultidimensionalArray = [["test", "test", "test"], ["test", "test", "test"], ["test", "test", "test"]];
-    
-    let whenArrayIsFlattened = appComponent.flattenTranslationsList(givenMultidimensionalArray);
-    
-    expect(whenArrayIsFlattened.length).toEqual(9);
-  });
-
-  it ('should check if object key equals "text"', () => {
-    let givenObject = {"testObjectKey": "Testing object"}
-
-    let whenConvertedToTranslateObject = appComponent.convertValuesFromObjectToTranslateObject(givenObject);
-
-    expect(whenConvertedToTranslateObject[0].hasOwnProperty('text')).toEqual(true);
-  });
-
-  it ('should check if text key has proper value', () => {
-    let givenObject = {"test": "Testing first object key"};
-
-    let whenConvertedToTranslateObject = appComponent.convertValuesFromObjectToTranslateObject(givenObject);
-    
-    expect(whenConvertedToTranslateObject[0].text).toEqual('Testing first object key');
-  });
 
 });
