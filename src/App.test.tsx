@@ -41,7 +41,7 @@ describe('Translating user input', () => {
 
       const givenTranslationInput = container.querySelector('#translation-input');
 
-      givenTranslationInput.value = "{Text: 'Hello, this is a test'}";
+      givenTranslationInput.value = "{Text: 'Valid user input'}";
       
       expect(givenTranslationInput.disabled).toBe(false);
     });
