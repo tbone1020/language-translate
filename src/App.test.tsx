@@ -45,17 +45,6 @@ describe('Translating user input', () => {
       expect(givenTranslationInput.disabled).toBe(false);
     });
 
-    it ("should display the error when errorMessage isn't empty", () => {
-      appComponent.state.errorMessage = "404 error";
-
-      act(() => {
-        render(<App />, HTMLContainer);
-      });
-
-      
-      // console.log(HTMLContainer.querySelector('#error-message').textContent);
-    });
-
   });
 
   describe('prepping users input for translation', () => {
@@ -152,8 +141,9 @@ describe('Translating user input', () => {
       expect(whenConvertedToTranslateObject[1].text).toEqual('Testing second object key');
     });
 
-    it ('convertIndexValueFromArrayToTranslatableObject()', () => {
-  
+    it ('it should convert and array to a translatable object', () => {
+      // const givenTestArray = [];
+      // let whenArrayIsConverted = appComponent.convertIndexValueFromArrayToTranslatableObject();
     });
   
     it ('should return the text "val"', () => {

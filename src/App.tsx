@@ -4,6 +4,7 @@ import TranslationInput from './components/translation-input';
 import TranslationOutput from './components/translation-output';
 import LoadingIcon from './components/loading';
 import HelpModel from './components/help-model'
+import ErrorMessage from './components/error-message';
 import API from './components/api';
 import './App.css';
 
@@ -68,6 +69,8 @@ export default class App extends React.Component<{}, IState> {
   
   convertCurrentObjectToTranslatableObject(key: string): object[] {
     if (Array.isArray(this.state.userTypedInput[key])) {
+      console.log("key ---------------------");
+      console.log(key);
       return this.convertIndexValueFromArrayToTranslatableObject(key, this.state.userTypedInput[key]);
     } else {
       return this.convertValuesFromObjectToTranslateObject(this.state.userTypedInput[key]);
@@ -76,7 +79,7 @@ export default class App extends React.Component<{}, IState> {
 
   convertIndexValueFromArrayToTranslatableObject(key: string, objectList: object[]): object[] {
     let targetObjectKey = this.whichObjectKeyShouldBeUsed(key);
-    return objectList.map(objectIndex => ({ "text": objectIndex[targetObjectKey]}))
+    return objectList.map(objectIndex => ({"text": objectIndex[targetObjectKey]}));
   }
 
   whichObjectKeyShouldBeUsed(key: string): string {
@@ -97,11 +100,11 @@ export default class App extends React.Component<{}, IState> {
   }
 
   translateThenDisplay(translationsList: object[]): void {
-    API.getTranslations(translationsList, this.state.toLanguage).then(translationResult => {
-      this.displayTranslationsIfSuccessful(translationResult);
-    }).catch(errorMessage => {
-      this.displayErrorMessage(errorMessage);
-    });
+    // API.getTranslations(translationsList, this.state.toLanguage).then(translationResult => {
+    //   this.displayTranslationsIfSuccessful(translationResult);
+    // }).catch(errorMessage => {
+    //   this.displayErrorMessage(errorMessage);
+    // });
   }
 
   displayTranslationsIfSuccessful({response, isSuccessful}): void {
@@ -160,7 +163,7 @@ export default class App extends React.Component<{}, IState> {
     
     return (<main role="main">
       <Header updateMainState={this.updateMainState} isModelShowing={isModelShowing} />
-      <section id="error-message">{errorMessage !== "" ? errorMessage : null}</section>
+      <ErrorMessage errorMessage={errorMessage} />
       <section id="translations-wrapper">
         <HelpModel updateMainState={this.updateMainState} shouldHelpModelShow={isModelShowing} />
         <TranslationInput updateMainState={this.updateMainState}/>
