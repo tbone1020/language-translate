@@ -25,8 +25,11 @@ export default class API {
     }
 
 
-    static getMockTranslations () {
-        return mockTranslation;
+    static async getMockTranslations () {
+        return {
+            response: mockTranslation,
+            isSuccessful: true
+        };
     }
 
     static getAPIReqestOptions = (listToTranslate) => ({

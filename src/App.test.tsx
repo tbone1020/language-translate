@@ -4,14 +4,14 @@ import { act } from 'react-dom/test-utils';
 import App from './App';
 import TranslationInput from './components/translation-input';
 
-describe('Translating user input', () => {
+describe('translating user input', () => {
   let appComponent;
 
   beforeEach(() => {
     appComponent = new App({});
   });
 
-  describe('HTML renders properly', () => {
+  describe('HTML rendering correctly', () => {
     let HTMLContainer = null;
     
     beforeEach(()=> {
@@ -25,15 +25,15 @@ describe('Translating user input', () => {
       HTMLContainer = null;
     });
 
-    it ('should show translate button as disabled if user input is invalid', () => {
+    it ('should show translate button as disabled if user input is invalid JSON', () => {
       act(() => {
         render(<App />, HTMLContainer);
       });
 
-      expect(HTMLContainer.querySelector('.translate-button').disabled).toBe(true);
+      expect(HTMLContainer.querySelector('.translate-button').disabled).toBeTruthy();
     });
 
-    it ('should show translate button as enabled if user input is valid', () => {
+    it ('should show translate button as enabled if users input is valid JSON', () => {
       act(() => {
         render(<TranslationInput updateMainState={HTMLContainer.updateMainState}/>, HTMLContainer);
       });
@@ -42,12 +42,12 @@ describe('Translating user input', () => {
 
       givenTranslationInput.value = "{Text: 'Valid user input'}";
       
-      expect(givenTranslationInput.disabled).toBe(false);
+      expect(givenTranslationInput.disabled).toBeFalsy();
     });
 
   });
 
-  describe('prepping users input for translation', () => {
+  describe('preparing users input for translation', () => {
 
     it ('should remove all "Count" keys from object', () => {
       appComponent.state.userTypedInput = {
@@ -141,7 +141,7 @@ describe('Translating user input', () => {
       expect(whenConvertedToTranslateObject[1].text).toEqual('Testing second object key');
     });
 
-    it ('it should convert and array to a translatable object', () => {
+    it ('should convert and array to a translatable object', () => {
       // const givenTestArray = [];
       // let whenArrayIsConverted = appComponent.convertIndexValueFromArrayToTranslatableObject();
     });
@@ -172,6 +172,22 @@ describe('Translating user input', () => {
   });
 
   describe('map translations back to user input', () => {
+
+    beforeEach(() => {
+      appComponent.state.userTypedInput = {
+        "search": {
+          "searchField": "Enter Postal Code / Zip Code",
+          "subButton": "Find"
+        },
+        "autotext": [{
+            "name": "hero_header",
+            "val": "Find coffee near you"
+          }, {
+            "name": "sub-header",
+            "val": "Make your selection below."
+        }]
+      }
+    });
     
     it ('should flatten a multidimensional array', () => {
       const givenMultidimensionalArray = [["test", "test", "test"], ["test", "test", "test"], ["test", "test", "test"]];
@@ -181,23 +197,24 @@ describe('Translating user input', () => {
       expect(whenArrayIsFlattened.length).toEqual(9);
     });
 
+    it ('should add translations back to the user input', () => {
+      const givenMockTranslations = [
+        {"translations": [{"text": "Translation Test 1","to": "fr"}]},
+        {"translations": [{"text": "Translation Test 2","to": "fr"}]},
+        {"translations": [{"text": "Translation Test 3","to": "fr"}]},
+        {"translations": [{"text": "Translation Test 4","to": "fr"}]},
+      ];
+
+      const whenTranslationsAreBackInUserInput = appComponent.mapTranslationsBackToUserInput(givenMockTranslations);
+
+      expect(whenTranslationsAreBackInUserInput.search.searchField).toEqual("Translation Test 1");
+      expect(whenTranslationsAreBackInUserInput.search.subButton).toEqual("Translation Test 2");
+      expect(whenTranslationsAreBackInUserInput.autotext[0].val).toEqual("Translation Test 3");
+      expect(whenTranslationsAreBackInUserInput.autotext[1].val).toEqual("Translation Test 4");
+    });
+
   });
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-
 });

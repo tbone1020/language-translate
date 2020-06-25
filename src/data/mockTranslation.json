@@ -1,474 +1,1254 @@
 [
     [
         {
-            "text": "TRANSLATION - U.S. Products"
+            "translations": [
+                {
+                    "text": "Produits américains",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Produits canadiens",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Anglais",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Français canadien",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Entrez le code postal / code postal",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Trouver",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Affiner la recherche",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Rechercher à proximité",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Précédent",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Retour aux produits",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Retour aux lieux",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Retour aux lieux",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Retour aux lieux",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Canadian Products"
+            "translations": [
+                {
+                    "text": "Sélectionnez",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - English"
+            "translations": [
+                {
+                    "text": "Faire une sélection",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Canadian French"
+            "translations": [
+                {
+                    "text": "Deal Trouvé",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Enter Postal Code / Zip Code"
+            "translations": [
+                {
+                    "text": "Offres trouvées",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Find"
+            "translations": [
+                {
+                    "text": "Affaire",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Refine Search"
+            "translations": [
+                {
+                    "text": "Offres",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Search nearby"
+            "translations": [
+                {
+                    "text": "Précédente",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Back"
+            "translations": [
+                {
+                    "text": "prochain",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Back to products"
+            "translations": [
+                {
+                    "text": "Afficher les offres",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Back to locations"
+            "translations": [
+                {
+                    "text": "Vue",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Back to locations"
+            "translations": [
+                {
+                    "text": "",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Back to locations"
+            "translations": [
+                {
+                    "text": "Produit sélectionné",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Select"
+            "translations": [
+                {
+                    "text": "Produits sélectionnés",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Make a Selection"
+            "translations": [
+                {
+                    "text": "Tous",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Deal Found"
+            "translations": [
+                {
+                    "text": "Sélectionner tous les produits affichés",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Deals Found"
+            "translations": [
+                {
+                    "text": "Effacer tout",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Deal"
+            "translations": [
+                {
+                    "text": "Ajouter au panier",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Deals"
+            "translations": [
+                {
+                    "text": "Votre panier est vide.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Previous"
+            "translations": [
+                {
+                    "text": "Réinitialiser les produits",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Next"
+            "translations": [
+                {
+                    "text": "Sélectionner les produits",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - View Deals"
+            "translations": [
+                {
+                    "text": "Sélectionner une catégorie",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - View"
+            "translations": [
+                {
+                    "text": "Afficher plus",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - "
+            "translations": [
+                {
+                    "text": "Produit",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Selected Product"
+            "translations": [
+                {
+                    "text": "Produits",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Selected Products"
+            "translations": [
+                {
+                    "text": "",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - All"
+            "translations": [
+                {
+                    "text": "Rechercher le produit préféré",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Select all products shown"
+            "translations": [
+                {
+                    "text": "Présentation des produits pour:",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Clear All"
+            "translations": [
+                {
+                    "text": "",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Add to Cart"
+            "translations": [
+                {
+                    "text": "En savoir plus",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Your Shopping Cart is Empty."
+            "translations": [
+                {
+                    "text": "Aucun produit sélectionné",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Reset Products"
+            "translations": [
+                {
+                    "text": "Envoyer",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Select Products"
+            "translations": [
+                {
+                    "text": "Adresse e-mail",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Select a Category"
+            "translations": [
+                {
+                    "text": "Itinéraire",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Show More"
+            "translations": [
+                {
+                    "text": "Obtenir des directions",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Product"
+            "translations": [
+                {
+                    "text": "Afficher plus",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Products"
+            "translations": [
+                {
+                    "text": "Afficher moins",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - "
+            "translations": [
+                {
+                    "text": "Produit trouvé",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Search favourite product"
+            "translations": [
+                {
+                    "text": "Produits trouvés",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Showing products for:"
+            "translations": [
+                {
+                    "text": "Imprimer",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - "
+            "translations": [
+                {
+                    "text": "Trouver des produits",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - View more"
+            "translations": [
+                {
+                    "text": "Produits",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - No Products Selected"
+            "translations": [
+                {
+                    "text": "Itinéraire",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Send"
+            "translations": [
+                {
+                    "text": "Messagerie électronique",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Email Address"
+            "translations": [
+                {
+                    "text": "Itinéraire",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Directions"
+            "translations": [
+                {
+                    "text": "Produit disponible en ligne",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Get Directions"
+            "translations": [
+                {
+                    "text": "Acheter en ligne",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Show More"
+            "translations": [
+                {
+                    "text": "Plus de produits en ligne",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Show Less"
+            "translations": [
+                {
+                    "text": "Détaillants",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Product found"
+            "translations": [
+                {
+                    "text": "Produits",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Products found"
+            "translations": [
+                {
+                    "text": "Détaillant trouvé",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Print"
+            "translations": [
+                {
+                    "text": "Détaillants trouvés",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Find products"
+            "translations": [
+                {
+                    "text": "Produit trouvé",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Products"
+            "translations": [
+                {
+                    "text": "Produits trouvés",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Directions"
+            "translations": [
+                {
+                    "text": "Acheter en ligne",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Email"
+            "translations": [
+                {
+                    "text": "En stock",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Directions"
+            "translations": [
+                {
+                    "text": "En rupture de stock",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Product Available Online"
+            "translations": [
+                {
+                    "text": "Détails",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Buy online"
+            "translations": [
+                {
+                    "text": "Contactez-nous",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - More Products Online"
+            "translations": [
+                {
+                    "text": "Aucun magasin trouvé",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Retailers"
+            "translations": [
+                {
+                    "text": "Oh non! Essayez d’augmenter le rayon de recherche ou remplissez le formulaire pour demander des produits près de chez vous.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Products"
+            "translations": [
+                {
+                    "text": "Votre nom",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Retailer found"
+            "translations": [
+                {
+                    "text": "Adresse e-mail",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Retailers found"
+            "translations": [
+                {
+                    "text": "Numéro de téléphone",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Product found"
+            "translations": [
+                {
+                    "text": "Où magasinez-vous?",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Products found"
+            "translations": [
+                {
+                    "text": "Rechercher des magasins",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Buy online"
+            "translations": [
+                {
+                    "text": "Commentaires",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - In Stock"
+            "translations": [
+                {
+                    "text": "Ville",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Out of Stock"
+            "translations": [
+                {
+                    "text": "Province",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Details"
+            "translations": [
+                {
+                    "text": "Postal Code",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Contact Us"
+            "translations": [
+                {
+                    "text": "Sélectionner un pays",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - No Stores Found"
+            "translations": [
+                {
+                    "text": "Envoyer",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Oh no! Try increasing the search radius or complete the form to request products near you."
+            "translations": [
+                {
+                    "text": "cliquez ici",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Your Name"
+            "translations": [
+                {
+                    "text": "Prénom",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Email Address"
+            "translations": [
+                {
+                    "text": "Nom de famille",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Phone Number"
-        },
-        {
-            "text": "TRANSLATION - Where do you shop?"
-        },
-        {
-            "text": "TRANSLATION - Search for Stores"
-        },
-        {
-            "text": "TRANSLATION - Comments"
-        },
-        {
-            "text": "TRANSLATION - City"
-        },
-        {
-            "text": "TRANSLATION - Province"
-        },
-        {
-            "text": "TRANSLATION - Postal Code"
-        },
-        {
-            "text": "TRANSLATION - Select a Country"
-        },
-        {
-            "text": "TRANSLATION - Submit"
-        },
-        {
-            "text": "TRANSLATION - click here"
-        },
-        {
-            "text": "TRANSLATION - First Name"
-        },
-        {
-            "text": "TRANSLATION - Last Name"
-        },
-        {
-            "text": "TRANSLATION - Job Title"
-        },
-        {
-            "text": "TRANSLATION - Email Address"
-        },
-        {
-            "text": "TRANSLATION - Phone Number"
-        },
-        {
-            "text": "TRANSLATION - Store Name"
-        },
-        {
-            "text": "TRANSLATION - Street Address"
-        },
-        {
-            "text": "TRANSLATION - City"
-        },
-        {
-            "text": "TRANSLATION - Province"
-        },
-        {
-            "text": "TRANSLATION - Postal Code"
-        },
-        {
-            "text": "TRANSLATION - Select a Country"
-        },
-        {
-            "text": "TRANSLATION - Phone Number"
-        },
-        {
-            "text": "TRANSLATION - Submit"
-        },
-        {
-            "text": "TRANSLATION - Start New Session"
-        },
-        {
-            "text": "TRANSLATION - End Session"
+            "translations": [
+                {
+                    "text": "Titre de l’emploi",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Adresse e-mail",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Numéro de téléphone",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Nom du magasin",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Adresse de la rue",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Ville",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Province",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Postal Code",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Sélectionner un pays",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Numéro de téléphone",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Envoyer",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Démarrer une nouvelle session",
+                    "to": "fr"
+                }
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "text": "Fin de la session",
+                    "to": "fr"
+                }
+            ]
         }
     ],
     [
         {
-            "text": "TRANSLATION - Email Address"
+            "translations": [
+                {
+                    "text": "Adresse e-mail",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Send"
+            "translations": [
+                {
+                    "text": "Envoyer",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Customer Name"
+            "translations": [
+                {
+                    "text": "Nom du client",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Thank you for your interest in our products. Your results are included below."
+            "translations": [
+                {
+                    "text": "Merci de votre intérêt pour nos produits. Vos résultats sont inclus ci-dessous.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Modify"
+            "translations": [
+                {
+                    "text": "Modifier",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Include Products"
+            "translations": [
+                {
+                    "text": "Inclure les produits",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Copy"
+            "translations": [
+                {
+                    "text": "Copie",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Copied"
+            "translations": [
+                {
+                    "text": "Copié",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Please Enter a Valid Location."
+            "translations": [
+                {
+                    "text": "Veuillez entrer un emplacement valide.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - We are sorry, but we could not find your location."
+            "translations": [
+                {
+                    "text": "Nous sommes désolés, mais nous n’avons pas pu trouver votre emplacement.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Please confirm your search."
+            "translations": [
+                {
+                    "text": "Veuillez confirmer votre recherche.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - "
+            "translations": [
+                {
+                    "text": "",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Continue with"
+            "translations": [
+                {
+                    "text": "Continuer avec",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Continue with"
+            "translations": [
+                {
+                    "text": "Continuer avec",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Please select at least one product."
+            "translations": [
+                {
+                    "text": "Veuillez sélectionner au moins un produit.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Email sent successfully."
+            "translations": [
+                {
+                    "text": "E-mail envoyé avec succès.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - You appear to have entered an invalid email address. Please try again."
+            "translations": [
+                {
+                    "text": "Vous semblez avoir saisi une adresse e-mail non valide. S’ll vous plaît, réessayez.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Geolocation service failed."
+            "translations": [
+                {
+                    "text": "Le service de géolocalisation a échoué.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Your browser does not support geolocation."
+            "translations": [
+                {
+                    "text": "Votre navigateur ne prend pas en charge la géolocalisation.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Please choose a directions origin."
+            "translations": [
+                {
+                    "text": "Veuillez choisir une origine de direction.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Your directions have been sent!"
+            "translations": [
+                {
+                    "text": "Vos instructions ont été envoyées!",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Please fill out required fields."
+            "translations": [
+                {
+                    "text": "Veuillez remplir les champs requis.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - We have received your request."
+            "translations": [
+                {
+                    "text": "Nous avons reçu votre demande.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Select One"
+            "translations": [
+                {
+                    "text": "Sélectionner un",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - FIND Some Kick Ass Coffee!"
+            "translations": [
+                {
+                    "text": "TROUVEZ un café Kick Ass!",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Looking for a specific product? Make your selection below."
+            "translations": [
+                {
+                    "text": "Vous cherchez un produit spécifique? Faites votre sélection ci-dessous.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Product categories"
+            "translations": [
+                {
+                    "text": "Catégories de produits",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Filter products:"
+            "translations": [
+                {
+                    "text": "Produits de filtre :",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Send store details & directions"
+            "translations": [
+                {
+                    "text": "Envoyer les détails du magasin et les directions",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Total results"
+            "translations": [
+                {
+                    "text": "Résultats totaux",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Displaying"
+            "translations": [
+                {
+                    "text": "Affichage",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Retailers,"
+            "translations": [
+                {
+                    "text": "Détaillants",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - to add your store."
+            "translations": [
+                {
+                    "text": "pour ajouter votre magasin.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Products subject to availability."
+            "translations": [
+                {
+                    "text": "Produits sous réserve de disponibilité.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Dang!"
+            "translations": [
+                {
+                    "text": "Dang!",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - The selected products aren't yet available near this location. Enter a postal / zip code."
+            "translations": [
+                {
+                    "text": "Les produits sélectionnés ne sont pas encore disponibles à proximité de cet emplacement. Entrez un code postal / code postal.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Contact Info"
+            "translations": [
+                {
+                    "text": "Informations sur les contacts",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Store Info"
+            "translations": [
+                {
+                    "text": "Informations sur le magasin",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Select Products"
+            "translations": [
+                {
+                    "text": "Sélectionner les produits",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Location"
+            "translations": [
+                {
+                    "text": "Emplacement",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Route Overview"
+            "translations": [
+                {
+                    "text": "Vue d’ensemble de l’itinéraire",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Retail Request Form"
+            "translations": [
+                {
+                    "text": "Formulaire de demande de vente au détail",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Have your location listed by completing the form below."
+            "translations": [
+                {
+                    "text": "Ayez votre emplacement répertorié en remplissant le formulaire ci-dessous.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - View more"
+            "translations": [
+                {
+                    "text": "En savoir plus",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Your Email Request"
+            "translations": [
+                {
+                    "text": "Votre demande d’e-mail",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Thank you for your interest in our products."
+            "translations": [
+                {
+                    "text": "Merci de votre intérêt pour nos produits.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Here are the store details and directions you requested:"
+            "translations": [
+                {
+                    "text": "Voici les détails du magasin et les directions que vous avez demandées :",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Store details"
+            "translations": [
+                {
+                    "text": "Détails du magasin",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Directions to this location"
+            "translations": [
+                {
+                    "text": "Itinéraire s’il se trouve à cet endroit",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Your print request"
+            "translations": [
+                {
+                    "text": "Votre demande d’impression",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Here is the store list you requested:"
+            "translations": [
+                {
+                    "text": "Voici la liste de magasins que vous avez demandée :",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Looking for Ground or Whole Bean coffee? Good news: you can also buy online."
+            "translations": [
+                {
+                    "text": "Vous cherchez du café Ground ou Whole Bean? Bonne nouvelle : vous pouvez également acheter en ligne.",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Buy online"
+            "translations": [
+                {
+                    "text": "Acheter en ligne",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Products selected"
+            "translations": [
+                {
+                    "text": "Produits sélectionnés",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Categories"
+            "translations": [
+                {
+                    "text": "Catégories",
+                    "to": "fr"
+                }
+            ]
         },
         {
-            "text": "TRANSLATION - Send store details"
+            "translations": [
+                {
+                    "text": "Envoyer les détails du magasin",
+                    "to": "fr"
+                }
+            ]
         }
     ]
 ]

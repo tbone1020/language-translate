@@ -21,12 +21,12 @@ export default class Header extends React.Component<IProps, {}> {
 
   render() {
     return (<header>
-      <div className="header-wrapper">
-        <h1 className="header-logo">
+      <div id="header-wrapper">
+        <h1 id="header-logo">
           <img src={destinilogo} alt="destini logo"/>
-          <span className="logo-sub-text"> translator</span>
+          <span id="logo-sub-text"> translator</span>
         </h1>
-        <figure onClick={() => this.showHelpModel()} className="help-icon">
+        <figure onClick={() => this.showHelpModel()} id="help-icon">
           <FontAwesomeIcon icon={faQuestionCircle} />
         </figure>
       </div>

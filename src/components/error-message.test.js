@@ -3,7 +3,7 @@ import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 import ErrorMessage from "./error-message";
 
-describe('error happening', () => {
+describe('error message appearing', () => {
     let HTMLContainer = null;
     
     beforeEach(()=> {
@@ -25,7 +25,6 @@ describe('error happening', () => {
         });
 
         expect(HTMLContainer.querySelector('#error-message').textContent).toEqual('');
-
     });
 
     it ('should display the error when errorMessage is not empty', () => {

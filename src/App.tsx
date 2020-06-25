@@ -69,8 +69,6 @@ export default class App extends React.Component<{}, IState> {
   
   convertCurrentObjectToTranslatableObject(key: string): object[] {
     if (Array.isArray(this.state.userTypedInput[key])) {
-      console.log("key ---------------------");
-      console.log(key);
       return this.convertIndexValueFromArrayToTranslatableObject(key, this.state.userTypedInput[key]);
     } else {
       return this.convertValuesFromObjectToTranslateObject(this.state.userTypedInput[key]);
@@ -100,11 +98,11 @@ export default class App extends React.Component<{}, IState> {
   }
 
   translateThenDisplay(translationsList: object[]): void {
-    // API.getTranslations(translationsList, this.state.toLanguage).then(translationResult => {
-    //   this.displayTranslationsIfSuccessful(translationResult);
-    // }).catch(errorMessage => {
-    //   this.displayErrorMessage(errorMessage);
-    // });
+    API.getTranslations(translationsList, this.state.toLanguage).then(translationResult => {
+      this.displayTranslationsIfSuccessful(translationResult);
+    }).catch(errorMessage => {
+      this.displayErrorMessage(errorMessage);
+    });
   }
 
   displayTranslationsIfSuccessful({response, isSuccessful}): void {
@@ -139,13 +137,13 @@ export default class App extends React.Component<{}, IState> {
     const copyOfUserInput = {...this.state.userTypedInput};
     for (let key in copyOfUserInput) {
       if (copyOfUserInput[key] instanceof Object) {
-        this.combineTranslationsWithInput({key, copyOfUserInput, translationList});
+        this.combineTranslationsWithIndividualKeys({key, copyOfUserInput, translationList});
       }
     }
     return copyOfUserInput;
   }
 
-  combineTranslationsWithInput({key, copyOfUserInput, translationList}): void {
+  combineTranslationsWithIndividualKeys({key, copyOfUserInput, translationList}): void {
     const translationsForThisObjectKey = translationList.splice(0, Object.keys(copyOfUserInput[key]).length);
     for (let arrKey in copyOfUserInput[key]) {
       let listOfTranslations: any = translationsForThisObjectKey.shift();
