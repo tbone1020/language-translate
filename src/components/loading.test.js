@@ -4,17 +4,17 @@ import { render, unmountComponentAtNode } from "react-dom";
 import { act } from '@testing-library/react';
  
 describe('loading state', () => {
-    let container = null;
+    let htmlContainer = null;
     
     beforeEach(() => {
-      container = document.createElement("div");
-      document.body.appendChild(container);
+      htmlContainer = document.createElement("div");
+      document.body.appendChild(htmlContainer);
     });
 
     afterEach(() => {
-      unmountComponentAtNode(container);
-      container.remove();
-      container = null;
+      unmountComponentAtNode(htmlContainer);
+      htmlContainer.remove();
+      htmlContainer = null;
     });
 
     it ('displays arrow icon when isTranslating is false', () => {
@@ -22,10 +22,10 @@ describe('loading state', () => {
         const arrowIcon = '.to-arrow > .fa-arrow-right';
 
         act(() => {
-            render(<LoadingIcon isTranslating={givenIsTranslatingIsFalse} />, container);
+            render(<LoadingIcon isTranslating={givenIsTranslatingIsFalse} />, htmlContainer);
         });
         
-        expect(container.querySelector(arrowIcon)).toBeTruthy();
+        expect(htmlContainer.querySelector(arrowIcon)).toBeTruthy();
     });
 
     it ('displays spinning icon when isTranslating is true', () => {
@@ -33,10 +33,10 @@ describe('loading state', () => {
         const loadingIcon = '.to-arrow > .fa-spinner';
 
         act(() => {
-            render(<LoadingIcon isTranslating={givenIsTranslatingIsTrue} />, container);
+            render(<LoadingIcon isTranslating={givenIsTranslatingIsTrue} />, htmlContainer);
         });
     
-        expect(container.querySelector(loadingIcon)).toBeTruthy();
+        expect(htmlContainer.querySelector(loadingIcon)).toBeTruthy();
     });
 
 });

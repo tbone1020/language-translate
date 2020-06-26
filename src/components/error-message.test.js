@@ -4,37 +4,37 @@ import { act } from "react-dom/test-utils";
 import ErrorMessage from "./error-message";
 
 describe('error message appearing', () => {
-    let HTMLContainer = null;
+    let htmlContainer = null;
     
     beforeEach(()=> {
-      HTMLContainer = document.createElement("div");
-      document.body.appendChild(HTMLContainer);
+      htmlContainer = document.createElement("div");
+      document.body.appendChild(htmlContainer);
     });
 
     afterEach(() => {
-      unmountComponentAtNode(HTMLContainer);
-      HTMLContainer.remove();
-      HTMLContainer = null;
+      unmountComponentAtNode(htmlContainer);
+      htmlContainer.remove();
+      htmlContainer = null;
     });
 
     it ('should not display an error message if errorMessage is empty', () => {
         const givenEmptyErrorMessage = "";
 
         act(() => {
-            render(<ErrorMessage errorMessage={givenEmptyErrorMessage} />, HTMLContainer);
+            render(<ErrorMessage errorMessage={givenEmptyErrorMessage} />, htmlContainer);
         });
 
-        expect(HTMLContainer.querySelector('#error-message').textContent).toEqual('');
+        expect(htmlContainer.querySelector('#error-message').textContent).toEqual('');
     });
 
     it ('should display the error when errorMessage is not empty', () => {
         const givenErrorMessage = "404 Error";
 
         act(() => {
-            render(<ErrorMessage errorMessage={givenErrorMessage} />, HTMLContainer);
+            render(<ErrorMessage errorMessage={givenErrorMessage} />, htmlContainer);
         });
 
-        expect(HTMLContainer.querySelector('#error-message').textContent).toEqual('404 Error');
+        expect(htmlContainer.querySelector('#error-message').textContent).toEqual('404 Error');
     });
 
 });
