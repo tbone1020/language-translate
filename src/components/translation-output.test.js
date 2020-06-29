@@ -1,34 +1,29 @@
 import React from 'react';
 import TranslationOutput from './translation-output';
-import renderer from 'react-test-renderer';
-import { act } from '@testing-library/react';
-import { render, unmountComponentAtNode } from "react-dom";
+import { shallow, mount, render } from 'enzyme';
 
 describe ('translation output textarea', () => {
-    let htmlContainer = null;
-    let translationOutput = null;
 
-    beforeEach(() => {
-        htmlContainer = document.createElement('div');
-        document.body.appendChild(htmlContainer);
-        translationOutput = new TranslationOutput({});
-    });
-    
-    afterEach(() => {
-        unmountComponentAtNode(htmlContainer);
-        htmlContainer.remove();
-        htmlContainer = null;
+    it ('should pass props correctly', () => {
+        const givenOutputWrapper = shallow(<TranslationOutput translationList={"{'test':'test translation prop}"}  />);
+
+        expect(givenOutputWrapper.instance().props.translationList).toEqual("{'test':'test translation prop}");
     });
 
-    describe('the translation output', () => {
-        it ('should render input text area', () => {
-            act(() => {
-                render(<TranslationOutput />, htmlContainer);
-            });
+    it ('should update the App components state', () => {
+        const givenMockFunction = jest.fn();
+        const event = {
+            preventDefault() {},
+            target: { value: 'de' } 
+        };
 
-            expect(htmlContainer.querySelector('.textarea-wrapper > textarea')).toBeTruthy();
-        });
+        const givenOutputWrapper = shallow(<TranslationOutput updateMainState={givenMockFunction} />);
 
+        givenOutputWrapper.find('select').simulate('change', event);
+        
+        // console.log(givenMockFunction);
+        expect(givenMockFunction).toBeCalledWith();
     });
+
 
 });

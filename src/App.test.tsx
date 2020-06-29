@@ -25,6 +25,10 @@ describe('translating user input', () => {
       HTMLContainer = null;
     });
 
+    it ('should display error message', () => {
+      
+    });
+
     it ('should show translate button as disabled if user input is invalid JSON', () => {
       act(() => {
         render(<App />, HTMLContainer);
@@ -142,8 +146,7 @@ describe('translating user input', () => {
     });
 
     it ('should convert and array to a translatable object', () => {
-      // const givenTestArray = [];
-      // let whenArrayIsConverted = appComponent.convertIndexValueFromArrayToTranslatableObject();
+      
     });
   
     it ('should return the text "val"', () => {
@@ -167,10 +170,6 @@ describe('translating user input', () => {
 
   });
 
-  describe('translating user input', () => {
-
-  });
-
   describe('map translations back to user input', () => {
 
     beforeEach(() => {
@@ -188,6 +187,7 @@ describe('translating user input', () => {
         }]
       }
     });
+
     
     it ('should flatten a multidimensional array', () => {
       const givenMultidimensionalArray = [["test", "test", "test"], ["test", "test", "test"], ["test", "test", "test"]];
