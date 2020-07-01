@@ -1,8 +1,7 @@
 import React from "react";
-import { shallow, mount, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import Header from './header';
-import App from '../App';
 
 
 describe("showing header's content", () => {

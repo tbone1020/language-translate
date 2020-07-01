@@ -11,16 +11,9 @@ export default class TranslationInput extends React.Component<IProps, {}> {
     this.handleTranslations = this.handleTranslations.bind(this);
   }
 
-  updateState(input: string): void {
-    this.props.updateMainState({
-      userTypedInput: JSON.parse(input)
-    });
-  }
-
   handleTranslations({target: {value}}): void {
     if (this.isValidJSON(value)) {
-      this.props.updateMainState({ isValidJSON: true });
-      this.activateTranslateButtonIfJSONHasProperties(value);
+      this.enableButtonIfJSONHasProperties(JSON.parse(value));
     } else {
       this.props.updateMainState({ isValidJSON: false });
     }
@@ -35,10 +28,10 @@ export default class TranslationInput extends React.Component<IProps, {}> {
     return true;
   }
 
-  activateTranslateButtonIfJSONHasProperties(inputText: string): void {
-    let inputTextsProperties = Object.keys(JSON.parse(inputText));
-    if (inputTextsProperties.length > 0) {
-      this.updateState(inputText);
+  enableButtonIfJSONHasProperties(inputText: string): void {
+    let inputTextKeys = Object.keys(inputText);
+    if (inputTextKeys.length > 0) {
+      this.props.updateMainState({ userTypedInput: inputText, isValidJSON: true });
     } else {
       this.props.updateMainState({ isValidJSON: false });
     }

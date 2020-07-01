@@ -1,49 +1,41 @@
 import React from 'react';
 import TranslationInput from './translation-input';
-import * as TestRenderer from 'react-test-renderer'; 
-import { act } from '@testing-library/react';
-import { render, unmountComponentAtNode } from "react-dom";
+import { shallow } from 'enzyme';
+import sinon from 'sinon';
  
 describe('translation input textarea', () => {
-    let htmlContainer = null;
-    let translationInput = null;
+    let spyUpdateMainFunction = null;
+    let translationInputWrapper = null;
 
     beforeEach(() => {
-        htmlContainer = document.createElement('div');
-        document.body.appendChild(htmlContainer);
-        translationInput = new TranslationInput({});
-    });
-    
-    afterEach(() => {
-        unmountComponentAtNode(htmlContainer);
-        htmlContainer.remove();
-        htmlContainer = null;
+        spyUpdateMainFunction = sinon.spy();
+        translationInputWrapper = shallow(<TranslationInput updateMainState={spyUpdateMainFunction} />);
     });
 
-    describe('the translation input', () => {
-        it ('should render input text area', () => {
-            act(() => {
-                render(<TranslationInput />, htmlContainer);
-            });
-
-            expect(htmlContainer.querySelector('.textarea-wrapper > textarea')).toBeTruthy();
-        });
-        
-
-        it ('should return true if JSON is valid', () => {
-            const givenValidJSON = JSON.stringify({"test": "Testing"});
-
-            let whenValidJSONisTested = translationInput.isValidJSON(givenValidJSON);
-            
-            expect(whenValidJSONisTested).toEqual(true);
+    it ('should activate translation button with valid JSON', () => {
+        translationInputWrapper.find('#translation-input').simulate('change', {
+            preventDefault() {},
+            target: { value: '{"text":"Testing"}' } 
         });
 
-        it ('should return true if JSON is valid', () => {
-            const givenInvalidJSON = "test";
+        expect(spyUpdateMainFunction.calledOnce).toBe(true);
+    });
 
-            let whenValidJSONisTested = translationInput.isValidJSON(givenInvalidJSON);
-            
-            expect(whenValidJSONisTested).toEqual(false);
+    it ('should keep translation button disabled with invalid JSON', () => {
+        translationInputWrapper.find('#translation-input').simulate('change', {
+            preventDefault() {},
+            target: { value: '{"text""Testing"}' } 
         });
+
+        expect(spyUpdateMainFunction.calledOnce).toBe(true);
+    });
+
+    it ('should keep translation button disabled with empty object', () => {
+        translationInputWrapper.find('#translation-input').simulate('change', {
+            preventDefault() {},
+            target: { value: '{}' } 
+        });
+
+        expect(spyUpdateMainFunction.calledOnce).toBe(true);
     });
 });
