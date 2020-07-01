@@ -11,7 +11,7 @@ logs
 node_modules
 bower_components
 coverage
-test-report
+test-report.html
 
 *.sublime*
 

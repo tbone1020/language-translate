@@ -1,40 +1,23 @@
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import { shallow } from 'enzyme';
 import ErrorMessage from "./error-message";
 
 describe('error message appearing', () => {
-    let htmlContainer = null;
-    
-    beforeEach(()=> {
-      htmlContainer = document.createElement("div");
-      document.body.appendChild(htmlContainer);
-    });
-
-    afterEach(() => {
-      unmountComponentAtNode(htmlContainer);
-      htmlContainer.remove();
-      htmlContainer = null;
-    });
 
     it ('should not display an error message if errorMessage is empty', () => {
         const givenEmptyErrorMessage = "";
 
-        act(() => {
-            render(<ErrorMessage errorMessage={givenEmptyErrorMessage} />, htmlContainer);
-        });
+        const whenComponentHasNoErrorMessage = shallow(<ErrorMessage errorMessage={givenEmptyErrorMessage} />);
 
-        expect(htmlContainer.querySelector('#error-message').textContent).toEqual('');
+        expect(whenComponentHasNoErrorMessage.find('#error-message').text()).toEqual('');
     });
 
     it ('should display the error when errorMessage is not empty', () => {
-        const givenErrorMessage = "404 Error";
+        const givenEmptyErrorMessage = "404 Error";
 
-        act(() => {
-            render(<ErrorMessage errorMessage={givenErrorMessage} />, htmlContainer);
-        });
+        const whenComponentHasErrorMessage = shallow(<ErrorMessage errorMessage={givenEmptyErrorMessage} />);
 
-        expect(htmlContainer.querySelector('#error-message').textContent).toEqual('404 Error');
+        expect(whenComponentHasErrorMessage.find('#error-message').text()).toEqual('404 Error');
     });
 
 });

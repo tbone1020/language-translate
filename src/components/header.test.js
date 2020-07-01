@@ -1,34 +1,32 @@
 import React from "react";
 import { shallow, mount, render } from 'enzyme';
-import { act } from "react-dom/test-utils";
+import sinon from 'sinon';
 import Header from './header';
+import App from '../App';
 
 
 describe("showing header's content", () => {
-    let htmlContainer = null;
 
-    beforeEach(() => {
-        htmlContainer = document.createElement('div');
-        document.body.appendChild(htmlContainer);
-    });
-    
-    afterEach(() => {
-        unmountComponentAtNode(htmlContainer);
-        htmlContainer.remove();
-        htmlContainer = null;
+    it ('should render the logo and', () => {        
+        const givenHeaderWrapper = shallow(<Header/>);
+
+        expect(givenHeaderWrapper.find('#header-logo').html()).toEqual('<h1 id="header-logo"><img src="destinilogo.svg" alt="destini logo"/><span id="logo-sub-text"> translator</span></h1>');
     });
 
-    it ('should have logo with logo image path', () => {
-        const headerWrapper = shallow(<Header />);
-        console.log(headerWrapper.find('#header-logo'));
-        // expect(headerWrapper.find('').src).toEqual(expect.stringContaining(destinilogo));
+    it ('should render help icon', () => {
+        const givenHeaderWrapper = shallow(<Header/>);
+
+        expect(givenHeaderWrapper.find('#help-icon').html()).toContain('svg-inline--fa fa-question-circle');
     });
 
-    it ('should show sub text next to logo', () => {
-        expect(htmlContainer.querySelector('#logo-sub-text').textContent).toEqual(" translator");
-    });    
+    it ('should open help model when help icon is clicked', () => {
+        const spyUpdateMainState = sinon.spy();
 
-    it('Should render header logo and question mark icon', () => {
-        expect(htmlContainer.querySelector('#help-icon > .fa-question-circle')).toBeTruthy();
+        const headerComponent = shallow(<Header isModelShowing={false} updateMainState={spyUpdateMainState}/>);
+
+        headerComponent.find('#help-icon').simulate('click');
+
+        expect(spyUpdateMainState.calledOnce).toBeTruthy();
     });
-})
+
+});

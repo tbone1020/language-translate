@@ -1,29 +1,27 @@
 import React from 'react';
 import TranslationOutput from './translation-output';
-import { shallow, mount, render } from 'enzyme';
+import { shallow } from 'enzyme';
+import sinon from 'sinon';
 
 describe ('translation output textarea', () => {
 
-    it ('should pass props correctly', () => {
-        const givenOutputWrapper = shallow(<TranslationOutput translationList={"{'test':'test translation prop}"}  />);
+    it ('should add text to textarea value', () => {
+        const givenOutputWrapper = shallow(<TranslationOutput translationList={"test translation prop"}/>);
 
-        expect(givenOutputWrapper.instance().props.translationList).toEqual("{'test':'test translation prop}");
+        expect(givenOutputWrapper.find('#translation-output').html()).toContain('test translation prop');
     });
 
     it ('should update the App components state', () => {
-        const givenMockFunction = jest.fn();
-        const event = {
+        const spyUpdateMainState = sinon.spy();
+
+        const givenOutputWrapper = shallow(<TranslationOutput translationList={""}  updateMainState={spyUpdateMainState} />);
+
+        givenOutputWrapper.find('#language-dropdown').simulate('change', {
             preventDefault() {},
             target: { value: 'de' } 
-        };
-
-        const givenOutputWrapper = shallow(<TranslationOutput updateMainState={givenMockFunction} />);
-
-        givenOutputWrapper.find('select').simulate('change', event);
+        });
         
-        // console.log(givenMockFunction);
-        expect(givenMockFunction).toBeCalledWith();
+        expect(spyUpdateMainState.calledOnce).toBeTruthy();
     });
-
 
 });
