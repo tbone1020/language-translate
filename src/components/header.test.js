@@ -14,8 +14,8 @@ describe("showing header's content", () => {
 
     it ('should render help icon', () => {
         const givenHeaderWrapper = shallow(<Header/>);
-
-        expect(givenHeaderWrapper.find('#help-icon').html()).toContain('svg-inline--fa fa-question-circle');
+        
+        expect(givenHeaderWrapper.find('#help-icon').html().indexOf('svg-inline--fa fa-question-circle') !== -1).toBe(true);
     });
 
     it ('should open help model when help icon is clicked', () => {

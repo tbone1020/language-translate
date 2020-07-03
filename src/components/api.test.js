@@ -1,21 +1,15 @@
 import React from 'react';
 import API from './api';
 
-describe('translating user input', () => {
+describe('API Call', () => {
     
     describe('translating user input', () => {
 
     });
 
-    describe('retrieving mock translations', () => {
-        const whenRetreivingMockTranslations = API.getMockTranslations().then(data => {
-            expect(data.response[0][0].translations[0].text).toEqual('Produits américains');
-        });
-    });
+    describe('retrieving options', () => {
 
-    describe('options block', () => {
-
-        it ('should have the body in the options object', () => {
+        it ('should have the body property in the options object', () => {
             const givenTestBodyObject = {"text":"Testing"};
     
             const whenRetrievingOptionsObject = API.getAPIReqestOptions(givenTestBodyObject);
@@ -23,7 +17,7 @@ describe('translating user input', () => {
             expect(whenRetrievingOptionsObject.body).toEqual('{"text":"Testing"}');
         });
     
-        it ('should have headers object', () => {
+        it ('should have the headers object', () => {
             const givenTestBodyObject = {"text":"Testing"};
     
             const givenHeadersObject = API.getAPIReqestOptions(givenTestBodyObject);

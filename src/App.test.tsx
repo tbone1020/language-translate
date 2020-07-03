@@ -1,88 +1,50 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from 'react-dom/test-utils';
+import { shallow } from 'enzyme';
+import sinon from 'sinon';
 import App from './App';
 import TranslationInput from './components/translation-input';
 
 describe('translating user input', () => {
-  let appComponent;
+  let appWrapper = null;
 
   beforeEach(() => {
-    appComponent = new App({});
-  });
-
-  describe('HTML rendering correctly', () => {
-    let HTMLContainer = null;
-    
-    beforeEach(()=> {
-      HTMLContainer = document.createElement("div");
-      document.body.appendChild(HTMLContainer);
-    });
-
-    afterEach(() => {
-      unmountComponentAtNode(HTMLContainer);
-      HTMLContainer.remove();
-      HTMLContainer = null;
-    });
-
-    it ('should display error message', () => {
-      
-    });
-
-    it ('should show translate button as disabled if user input is invalid JSON', () => {
-      act(() => {
-        render(<App />, HTMLContainer);
-      });
-
-      expect(HTMLContainer.querySelector('.translate-button').disabled).toBeTruthy();
-    });
-
-    it ('should show translate button as enabled if users input is valid JSON', () => {
-      act(() => {
-        render(<TranslationInput updateMainState={HTMLContainer.updateMainState}/>, HTMLContainer);
-      });
-
-      const givenTranslationInput = HTMLContainer.querySelector('#translation-input');
-
-      givenTranslationInput.value = "{Text: 'Valid user input'}";
-      
-      expect(givenTranslationInput.disabled).toBeFalsy();
-    });
-
+    appWrapper = shallow(<App />);
   });
 
   describe('preparing users input for translation', () => {
-
+    
     it ('should remove all "Count" keys from object', () => {
-      appComponent.state.userTypedInput = {
+      appWrapper.setState({
         countryCount: 10,
         langCount: 5,
         autotextCount: 20,
-      }
+      })
       
-      let filteredObject = appComponent.filterOutCountKeysFromUserInput();
+      let filteredObject = appWrapper.instance().filterOutCountKeysFromUserInput();
       
       expect(filteredObject.hasOwnProperty('countryCount')).toEqual(false);
       expect(filteredObject.hasOwnProperty('langCount')).toEqual(false);
       expect(filteredObject.hasOwnProperty('autotextCount')).toEqual(false);
     });
-
+    
     it ('should create an array of translatable objects', () => {
-      appComponent.state.userTypedInput = {
-        "search": {
-          "searchField": "Enter Postal Code / Zip Code",
-          "subButton": "Find"
-        },
-        "autotext": [{
+      appWrapper.setState({
+        userTypedInput: {
+          "search": {
+            "searchField": "Enter Postal Code / Zip Code",
+            "subButton": "Find"
+          },
+          "autotext": [{
             "name": "hero_header",
             "val": "Find coffee near you"
           }, {
             "name": "sub-header",
             "val": "Make your selection below."
-        }]
-      }
+          }]
+        }
+      });
   
-      let whenSentForTranslation = appComponent.convertListToTranslateReadyObject(["search", "autotext"]);
+      let whenSentForTranslation = appWrapper.instance().convertListToTranslateReadyObject(["search", "autotext"]);
       
       expect(whenSentForTranslation[0].text).toEqual("Enter Postal Code / Zip Code");
       expect(whenSentForTranslation[1].text).toEqual("Find");
@@ -91,31 +53,35 @@ describe('translating user input', () => {
     });
 
     it ('should return a translate object if an array is passed in', () => {
-      appComponent.state.userTypedInput = {
-        "autotext": [{
-          "name": "hero_header",
-          "val": "Find coffee near you"
-        }, {
-          "name": "sub-header",
-          "val": "Make your selection below."
-        }]
-      }
-  
-      let whenTestArrayIsConverted = appComponent.convertCurrentObjectToTranslatableObject("autotext");
+      appWrapper.setState({
+        userTypedInput: {
+          "autotext": [{
+            "name": "hero_header",
+            "val": "Find coffee near you"
+          }, {
+            "name": "sub-header",
+            "val": "Make your selection below."
+          }]
+        }
+      });
+
+      let whenTestArrayIsConverted = appWrapper.instance().convertCurrentObjectToTranslatableObject("autotext");
   
       expect(whenTestArrayIsConverted[0].text).toEqual("Find coffee near you");
       expect(whenTestArrayIsConverted[1].text).toEqual("Make your selection below.");
     });
 
     it ('should return a translate object if an object is passed in', () => {
-      appComponent.state.userTypedInput = {
-        "search": {
-          "searchField": "Enter Postal Code / Zip Code",
-          "subButton": "Find"
+      appWrapper.setState({
+        userTypedInput: {
+          "search": {
+            "searchField": "Enter Postal Code / Zip Code",
+            "subButton": "Find"
+          }
         }
-      }
+      });
   
-      let whenTestObjectIsConverted = appComponent.convertCurrentObjectToTranslatableObject("search");
+      let whenTestObjectIsConverted = appWrapper.instance().convertCurrentObjectToTranslatableObject("search");
       
       expect(whenTestObjectIsConverted[0].text).toEqual("Enter Postal Code / Zip Code");
       expect(whenTestObjectIsConverted[1].text).toEqual("Find");
@@ -127,32 +93,28 @@ describe('translating user input', () => {
         givenLongArrayList.push("Testing");
       }
   
-      let whenArrayIsDivided = appComponent.separateTranslationsIntoChunks(givenLongArrayList);
+      let whenArrayIsDivided = appWrapper.instance().separateTranslationsIntoChunks(givenLongArrayList);
       
       expect(whenArrayIsDivided[0].length).toEqual(100);
       expect(whenArrayIsDivided[1].length).toEqual(60);
     });
-    
+
     it ('should check if text key has proper value', () => {
       let givenObject = {
         "testKeyNumber1": "Testing first object key",
         "testKeyNumber2": "Testing second object key"
       };
   
-      let whenConvertedToTranslateObject = appComponent.convertValuesFromObjectToTranslateObject(givenObject);
+      let whenConvertedToTranslateObject = appWrapper.instance().convertValuesFromObjectToTranslateObject(givenObject);
       
       expect(whenConvertedToTranslateObject[0].text).toEqual('Testing first object key');
       expect(whenConvertedToTranslateObject[1].text).toEqual('Testing second object key');
-    });
-
-    it ('should convert and array to a translatable object', () => {
-      
     });
   
     it ('should return the text "val"', () => {
       let givenObjectKey = "autotext";
   
-      let whenKeyIsPassedIn = appComponent.whichObjectKeyShouldBeUsed(givenObjectKey);
+      let whenKeyIsPassedIn = appWrapper.instance().whichObjectKeyShouldBeUsed(givenObjectKey);
       
       expect(whenKeyIsPassedIn).toEqual("val");
     });
@@ -161,60 +123,74 @@ describe('translating user input', () => {
       let givenCountryKey = "country";
       let givenLangKey = "lang";
   
-      let whenCountryIsPassedIn = appComponent.whichObjectKeyShouldBeUsed(givenCountryKey);
-      let whenLangIsPassedIn = appComponent.whichObjectKeyShouldBeUsed(givenLangKey);
+      let whenCountryIsPassedIn = appWrapper.instance().whichObjectKeyShouldBeUsed(givenCountryKey);
+      let whenLangIsPassedIn = appWrapper.instance().whichObjectKeyShouldBeUsed(givenLangKey);
       
       expect(whenCountryIsPassedIn).toEqual("name");
       expect(whenLangIsPassedIn).toEqual("name");
     });
-
+    
   });
 
   describe('map translations back to user input', () => {
 
     beforeEach(() => {
-      appComponent.state.userTypedInput = {
-        "search": {
-          "searchField": "Enter Postal Code / Zip Code",
-          "subButton": "Find"
-        },
-        "autotext": [{
-            "name": "hero_header",
-            "val": "Find coffee near you"
-          }, {
-            "name": "sub-header",
-            "val": "Make your selection below."
-        }]
-      }
+      appWrapper.setState({
+        userTypedInput: {
+          "search": {
+            "searchField": "Enter Postal Code / Zip Code",
+            "subButton": "Find"
+          },
+          "autotext": [{
+              "name": "hero_header",
+              "val": "Find coffee near you"
+            }, {
+              "name": "sub-header",
+              "val": "Make your selection below."
+          }]
+        }
+      })
     });
 
-    
     it ('should flatten a multidimensional array', () => {
       const givenMultidimensionalArray = [["test", "test", "test"], ["test", "test", "test"], ["test", "test", "test"]];
       
-      let whenArrayIsFlattened = appComponent.flattenTranslationsList(givenMultidimensionalArray);
+      let whenArrayIsFlattened = appWrapper.instance().flattenTranslationsList(givenMultidimensionalArray);
       
       expect(whenArrayIsFlattened.length).toEqual(9);
     });
 
-    it ('should add translations back to the user input', () => {
-      const givenMockTranslations = [
-        {"translations": [{"text": "Translation Test 1","to": "fr"}]},
-        {"translations": [{"text": "Translation Test 2","to": "fr"}]},
-        {"translations": [{"text": "Translation Test 3","to": "fr"}]},
-        {"translations": [{"text": "Translation Test 4","to": "fr"}]},
+    it ('should set errorMessage state', () => {
+      appWrapper.instance().displayTranslationsIfSuccessful({
+        response: "Error with API",
+        isSuccessful: false
+      });
+
+      expect(appWrapper.state().errorMessage).toEqual('Error with API');
+    });
+
+    it ('should map translations back to user input', () => {
+      const givenResponse = [
+        [
+          {"translations": [{"text": "Translations 1"}]},
+          {"translations": [{"text": "Translations 2"}]}
+        ], [
+          {"translations": [{"text": "Translations 3"}]},
+          {"translations": [{"text": "Translations 4"}]}
+        ]
       ];
 
-      const whenTranslationsAreBackInUserInput = appComponent.mapTranslationsBackToUserInput(givenMockTranslations);
+      appWrapper.instance().displayTranslationsIfSuccessful({
+        response: givenResponse,
+        isSuccessful: true
+      });
 
-      expect(whenTranslationsAreBackInUserInput.search.searchField).toEqual("Translation Test 1");
-      expect(whenTranslationsAreBackInUserInput.search.subButton).toEqual("Translation Test 2");
-      expect(whenTranslationsAreBackInUserInput.autotext[0].val).toEqual("Translation Test 3");
-      expect(whenTranslationsAreBackInUserInput.autotext[1].val).toEqual("Translation Test 4");
+      const parsedTranslations = JSON.parse(appWrapper.state().translationList);
+
+      expect(parsedTranslations.search.searchField).toEqual('Translations 1');
+      expect(parsedTranslations.search.subButton).toEqual('Translations 2');
     });
 
   });
-  
-  
   
 });
