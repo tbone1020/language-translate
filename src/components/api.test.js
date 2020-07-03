@@ -1,37 +1,11 @@
 import React from 'react';
 import API from './api';
+jest.mock('./api');
 
-describe('API Call', () => {
-    
-    describe('translating user input', () => {
-
+describe('API call', () => {
+    it ('can fetch from mock function', () => {
+        API.getTranslations().then(response => {
+            expect(response.text).toEqual('Test Translation');
+        });
     });
-
-    describe('retrieving options', () => {
-
-        it ('should have the body property in the options object', () => {
-            const givenTestBodyObject = {"text":"Testing"};
-    
-            const whenRetrievingOptionsObject = API.getAPIReqestOptions(givenTestBodyObject);
-    
-            expect(whenRetrievingOptionsObject.body).toEqual('{"text":"Testing"}');
-        });
-    
-        it ('should have the headers object', () => {
-            const givenTestBodyObject = {"text":"Testing"};
-    
-            const givenHeadersObject = API.getAPIReqestOptions(givenTestBodyObject);
-    
-            expect(givenHeadersObject.headers).toBeTruthy();
-        });
-    
-        it ('should be a POST request', () => {
-            const givenTestBodyObject = {"text":"Testing"};
-    
-            const givenHeadersObject = API.getAPIReqestOptions(givenTestBodyObject);
-    
-            expect(givenHeadersObject.method).toEqual('POST');
-        });
-
-    })
 });

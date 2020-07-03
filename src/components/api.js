@@ -1,7 +1,6 @@
 import mockTranslation from '../data/mockTranslation.json';
 
 export default class API {
-    static TRANSLATION_API_URL = 'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en';
 
     static async getTranslations(listToTranslate, translateTo) {
         const completedTranslationList = [];
