@@ -34,7 +34,7 @@ export default class API {
     static getAPIReqestOptions = (listToTranslate) => ({
         method: 'POST',
         headers: {
-            'Ocp-Apim-Subscription-Key': 'f44ce021bfa54ac9aa855d71b5250cae',
+            'Ocp-Apim-Subscription-Key': '',
             'Content-Type': 'application/json; charset=utf-8',
         },
         body: JSON.stringify(listToTranslate)

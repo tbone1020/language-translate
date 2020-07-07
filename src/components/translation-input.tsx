@@ -25,6 +25,7 @@ export default class TranslationInput extends React.Component<IProps, {}> {
     } catch(e) {
       return false;
     }
+    
     return true;
   }
 

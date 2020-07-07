@@ -1,7 +1,7 @@
 import React from 'react';
 import LoadingIcon from './loading';
 import { shallow } from 'enzyme';
- 
+
 describe('loading icon', () => {
 
     it ('displays arrow icon when isTranslating is false', () => {

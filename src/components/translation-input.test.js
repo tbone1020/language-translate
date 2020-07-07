@@ -12,30 +12,18 @@ describe('translation input textarea', () => {
         translationInputWrapper = shallow(<TranslationInput updateMainState={spyUpdateMainFunction} />);
     });
 
-    it ('should activate translation button with valid JSON', () => {
-        translationInputWrapper.find('#translation-input').simulate('change', {
-            preventDefault() {},
-            target: { value: '{"text":"Testing"}' } 
-        });
+    const testInputOnChange = (testMessage, expectedValue) => {
+        it (testMessage, () => {
+            translationInputWrapper.find('#translation-input').simulate('change', {
+                preventDefault() {},
+                target: { value: expectedValue } 
+            });
+    
+            expect(spyUpdateMainFunction.calledOnce).toBe(true);
+        });        
+    }
 
-        expect(spyUpdateMainFunction.calledOnce).toBe(true);
-    });
-
-    it ('should keep translation button disabled with invalid JSON', () => {
-        translationInputWrapper.find('#translation-input').simulate('change', {
-            preventDefault() {},
-            target: { value: '{"text""Testing"}' } 
-        });
-
-        expect(spyUpdateMainFunction.calledOnce).toBe(true);
-    });
-
-    it ('should keep translation button disabled with empty object', () => {
-        translationInputWrapper.find('#translation-input').simulate('change', {
-            preventDefault() {},
-            target: { value: '{}' } 
-        });
-
-        expect(spyUpdateMainFunction.calledOnce).toBe(true);
-    });
+    testInputOnChange('should activate translation button with valid JSON', '{"text":"Testing"}');
+    testInputOnChange('should keep translation button disabled with invalid JSON', '{"text""Testing"}');
+    testInputOnChange('should keep translation button disabled with empty object', '{}');
 });
