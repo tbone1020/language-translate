@@ -27,7 +27,7 @@ export default class Header extends React.Component<IProps, {}> {
           <span id="logo-sub-text"> translator</span>
         </h1>
         <figure onClick={() => this.showHelpModel()} id="help-icon">
-          <FontAwesomeIcon icon={faQuestionCircle} />
+          <FontAwesomeIcon size="lg" icon={faQuestionCircle} />
         </figure>
       </div>
     </header>);

@@ -1,0 +1,295 @@
+{
+    "country": [
+        {
+            "id": "1",
+            "name": "U.S. Products"
+        },
+        {
+            "id": "2",
+            "name": "Canadian Products"
+        }
+    ],
+    "countryCount": "2",
+    "lang": [
+        {
+            "id": "US-EN",
+            "name": "English"
+        },
+        {
+            "id": "CA-FR",
+            "name": "Canadian French"
+        }
+    ],
+    "langCount": 2,
+    "search": {
+        "searchField": "Enter Postal Code / Zip Code",
+        "subButton": "Find",
+        "cpButton": "Refine Search",
+        "geoButton": "Search nearby",
+        "backButton": "Back",
+        "p2backButton": "Back to products",
+        "p3backButton": "Back to locations",
+        "p4backButton": "Back to locations",
+        "p5backButton": "Back to locations",
+        "selectButton": "Select",
+        "findText": "Make a Selection"
+    },
+    "deals": {
+        "countSingle": "Deal Found",
+        "countPlural": "Deals Found",
+        "numSingle": "Deal",
+        "numPlural": "Deals",
+        "prevDeal": "Previous",
+        "nextDeal": "Next",
+        "dealBrowse": "View Deals",
+        "dealTextStart": "View",
+        "dealTextEnd": ""
+    },
+    "products": {
+        "selSingle": "Selected Product",
+        "selPlural": "Selected Products",
+        "selAll": "All",
+        "selAllButton": "Select all products shown",
+        "clearAllButton": "Clear All",
+        "cartButton": "Add to Cart",
+        "emptyCart": "Your Shopping Cart is Empty.",
+        "resetButton": "Reset Products",
+        "prodMenu": "Select Products",
+        "catMenu": "Select a Category",
+        "showMore": "Show More",
+        "badgeSingle": "Product",
+        "badgePlural": "Products",
+        "filterButton": "",
+        "filterField": "Search favourite product",
+        "labelCrumb": "Showing products for:"
+    },
+    "results": {
+        "prevTen": "",
+        "nextTen": "View more",
+        "noProdSel": "No Products Selected",
+        "emailButton": "Send",
+        "emailField": "Email Address",
+        "directButton": "Directions",
+        "directGet": "Get Directions",
+        "showMore": "Show More",
+        "showLess": "Show Less",
+        "prodFoundSingle": "Product found",
+        "prodFoundPlural": "Products found",
+        "printButton": "Print",
+        "showDetails": "Find products",
+        "productsTab": "Products",
+        "directionsTab": "Directions",
+        "emailTab": "Email",
+        "externalMap": "Directions"
+    },
+    "ecomm": {
+        "avSingle": "Product Available Online",
+        "avPlural": "Buy online",
+        "avAlt": "More Products Online",
+        "retailerTab": "Retailers",
+        "productsTab": "Products",
+        "retCountSingle": "Retailer found",
+        "retCountPlural": "Retailers found",
+        "prodCountSingle": "Product found",
+        "prodCountPlural": "Products found",
+        "buyButton": "Buy online",
+        "inStock": "In Stock",
+        "outStock": "Out of Stock",
+        "detailText": "Details"
+    },
+    "contactForm": {
+        "goButton": "Contact Us",
+        "headerText": "No Stores Found",
+        "bodyText": "Oh no! Try increasing the search radius or complete the form to request products near you.",
+        "nameField": "Your Name",
+        "emailField": "Email Address",
+        "phoneField": "Phone Number",
+        "storeField": "Where do you shop?",
+        "chainField": "Search for Stores",
+        "commentField": "Comments",
+        "cityField": "City",
+        "stateField": "Province",
+        "zipField": "Postal Code",
+        "countryField": "Select a Country",
+        "subButton": "Submit"
+    },
+    "addStore": {
+        "goButton": "click here",
+        "fnameField": "First Name",
+        "lnameField": "Last Name",
+        "jobField": "Job Title",
+        "emailField": "Email Address",
+        "phoneField": "Phone Number",
+        "snameField": "Store Name",
+        "addressField": "Street Address",
+        "cityField": "City",
+        "stateField": "Province",
+        "zipField": "Postal Code",
+        "countryField": "Select a Country",
+        "sphoneField": "Phone Number",
+        "subButton": "Submit"
+    },
+    "conAffairs": {
+        "sessStart": "Start New Session",
+        "sessEnd": "End Session",
+        "respEmailField": "Email Address",
+        "respEmailButton": "Send",
+        "respNameField": "Customer Name",
+        "respBodyField": "Thank you for your interest in our products. Your results are included below.",
+        "respControlField": "Modify",
+        "respIncProd": "Include Products",
+        "copyText": "Copy",
+        "copiedText": "Copied"
+    },
+    "alerts": {
+        "invalidLocation": "Please Enter a Valid Location.",
+        "noLocation": "We are sorry, but we could not find your location.",
+        "prodSwitchTitle": "Please confirm your search.",
+        "prodSwitchText": "",
+        "prodSwitchContButton": "Continue with",
+        "prodSwitchChangeButton": "Continue with",
+        "prodSelect": "Please select at least one product.",
+        "emailSuccess": "Email sent successfully.",
+        "emailAddFail": "You appear to have entered an invalid email address. Please try again.",
+        "geoFail": "Geolocation service failed.",
+        "geoUnavailable": "Your browser does not support geolocation.",
+        "directOrigin": "Please choose a directions origin.",
+        "directSent": "Your directions have been sent!",
+        "reqFields": "Please fill out required fields.",
+        "requestReceipt": "We have received your request."
+    },
+    "other": {
+        "genSlider": "Select One"
+    },
+    "autotextCount": "32",
+    "autotext": [
+        {
+            "name": "hero_header",
+            "val": "FIND Some Kick Ass Coffee!"
+        },
+        {
+            "name": "sub-header",
+            "val": "Looking for a specific product? Make your selection below."
+        },
+        {
+            "name": "mobile_label_button",
+            "val": "Product categories"
+        },
+        {
+            "name": "filter_header",
+            "val": "Filter products:"
+        },
+        {
+            "name": "email_input_header",
+            "val": "Send store details & directions"
+        },
+        {
+            "name": "results",
+            "val": "Total results"
+        },
+        {
+            "name": "display",
+            "val": "Displaying"
+        },
+        {
+            "name": "retailers_1",
+            "val": "Retailers,"
+        },
+        {
+            "name": "retailers_2",
+            "val": "to add your store."
+        },
+        {
+            "name": "products_fine_print",
+            "val": "Products subject to availability."
+        },
+        {
+            "name": "no_stores_header",
+            "val": "Dang!"
+        },
+        {
+            "name": "no_stores_txt",
+            "val": "The selected products aren't yet available near this location. Enter a postal / zip code."
+        },
+        {
+            "name": "contact_form_header",
+            "val": "Contact Info"
+        },
+        {
+            "name": "select_form_header",
+            "val": "Store Info"
+        },
+        {
+            "name": "select_products",
+            "val": "Select Products"
+        },
+        {
+            "name": "Location",
+            "val": "Location"
+        },
+        {
+            "name": "route_overview",
+            "val": "Route Overview"
+        },
+        {
+            "name": "retail_header",
+            "val": "Retail Request Form"
+        },
+        {
+            "name": "retail_txt",
+            "val": "Have your location listed by completing the form below."
+        },
+        {
+            "name": "nextTen_off",
+            "val": "View more"
+        },
+        {
+            "name": "email_request",
+            "val": "Your Email Request"
+        },
+        {
+            "name": "storedetails_thankyou",
+            "val": "Thank you for your interest in our products."
+        },
+        {
+            "name": "storedetails_sub",
+            "val": "Here are the store details and directions you requested:"
+        },
+        {
+            "name": "storedetails_heading",
+            "val": "Store details"
+        },
+        {
+            "name": "email_directions",
+            "val": "Directions to this location"
+        },
+        {
+            "name": "print_request",
+            "val": "Your print request"
+        },
+        {
+            "name": "storedetails_subthankyou",
+            "val": "Here is the store list you requested:"
+        },
+        {
+            "name": "no_stores_sub_txt",
+            "val": "Looking for Ground or Whole Bean coffee? Good news: you can also buy online."
+        },
+        {
+            "name": "panel_4_buy_online",
+            "val": "Buy online"
+        },
+        {
+            "name": "cart_text",
+            "val": "Products selected"
+        },
+        {
+            "name": "category_label_header",
+            "val": "Categories"
+        },
+        {
+            "name": "p2_email_input_header",
+            "val": "Send store details"
+        }
+    ]
+}
