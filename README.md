@@ -5,7 +5,7 @@
 ## About this app
 `language-translate` is an app that helps SPINS Ventures developers with translating the JSON object values that are used on multi-language product store locators.
 
-## Tech used
+## Technology used
 1. ReactJS
 2. TypeScript
 3. Jest and Enzyme
